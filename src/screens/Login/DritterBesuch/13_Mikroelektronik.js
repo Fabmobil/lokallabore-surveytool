@@ -1,7 +1,7 @@
-import WeiterButton from "../../components/WeiterButton";
-import Slider from "../../components/Slider";
-import imageTop from "../../assets/robo-thumbsup.png";
-import imageBottom from "../../assets/robo-thumbsdown.png";
+import WeiterButton from "../../../components/WeiterButton";
+import Slider from "../../../components/Slider";
+import imageTop from "../../../assets/robo-thumbsup.png";
+import imageBottom from "../../../assets/robo-thumbsdown.png";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {

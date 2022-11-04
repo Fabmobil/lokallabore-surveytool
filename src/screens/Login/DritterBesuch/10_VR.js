@@ -1,7 +1,7 @@
-import WeiterButton from "../../components/WeiterButton";
-import Slider from "../../components/Slider";
-import imageTop from "../../assets/robo-thumbsup.png";
-import imageBottom from "../../assets/robo-thumbsdown.png";
+import WeiterButton from "../../../components/WeiterButton";
+import Slider from "../../../components/Slider";
+import imageTop from "../../../assets/happy.png";
+import imageBottom from "../../../assets/unhappy.png";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
@@ -10,7 +10,7 @@ function Screen({ onSubmit, data, nextRoute }) {
 
   return (
     <>
-      <p>Wie spannend findest du 3D-Druck?</p>
+      <p>Was hälst du von Virtual Reality?</p>
       <Slider
         onChange={onSubmit}
         value={isNaN(data) ? 0 : data}

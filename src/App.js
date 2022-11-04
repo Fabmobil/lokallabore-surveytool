@@ -4,7 +4,7 @@ import Layout from "./Layout";
 import StartScreen from "./screens/0_Start";
 import SURVEY_REGISTRIERUNG from "./constants/survey-registrierung";
 import SURVEY_LOGIN from "./constants/survey-login";
-import SURVEY_DRITTERBESUCH from "./constants/survey-dritterbesuch";
+import SURVEY_LOGIN_DRITTERBESUCH from "./constants/survey-login-dritterbesuch";
 import SURVEY_GUEST from "./constants/survey-guest";
 
 class App extends React.Component {
@@ -130,26 +130,26 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal && (() => this.onFinalSubmitRegistrierung())
+                      item.isFinal && (() => this.onFinalSubmitLogin())
                     }
                   ></item.screenComponent>
                 }
               />
             ))}
 
-            {SURVEY_DRITTERBESUCH.surveyItems.map((item, i) => (
+            {SURVEY_LOGIN_DRITTERBESUCH.surveyItems.map((item, i) => (
               <Route
                 key={item.questionId}
-                path={`${SURVEY_DRITTERBESUCH.baseUrl}/${item.questionId}`}
+                path={`${SURVEY_LOGIN_DRITTERBESUCH.baseUrl}/${item.questionId}`}
                 element={
                   <item.screenComponent
-                    nextRoute={this.getNextRoute(SURVEY_DRITTERBESUCH, i)}
+                    nextRoute={this.getNextRoute(SURVEY_LOGIN_DRITTERBESUCH, i)}
                     onSubmit={(data) => {
-                      this.logAnswerThirdVisit(item.questionId, data);
+                      this.logAnswerLogin(item.questionId, data);
                     }}
-                    data={this.state.surveyAnswersThirdVisit[item.questionId]}
+                    data={this.state.surveyAnswersLogin[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal && (() => this.onFinalSubmitThirdVisit())
+                      item.isFinal && (() => this.onFinalSubmitLogin())
                     }
                   ></item.screenComponent>
                 }

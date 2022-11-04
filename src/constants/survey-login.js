@@ -6,7 +6,7 @@ import S05Dauer from "../screens/Login/05_Dauer";
 import S06Kritik from "../screens/Login/06_Kritik";
 import S07Logout from "../screens/Login/07_Logout";
 
-const SURVEY_REGISTRIERUNG = {
+const SURVEY_LOGIN = {
   baseUrl: "login",
   surveyItems: [
     {
@@ -40,4 +40,4 @@ const SURVEY_REGISTRIERUNG = {
   ],
 };
 
-export default SURVEY_REGISTRIERUNG;
+export default SURVEY_LOGIN;

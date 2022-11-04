@@ -1,14 +1,16 @@
-import SingleChoice from "../../components/SingleChoiceTool";
-import VerticalGrid from "../../components/VerticalGrid";
+import SingleChoice from "../../../components/SingleChoiceTool";
+import VerticalGrid from "../../../components/VerticalGrid";
 import { useNavigate } from "react-router-dom";
 
-const ANSWER_OPTIONS = ["Absolut", "nö", "noch nicht probiert"];
+const ANSWER_OPTIONS = ["Yesss", "Nö", "Hatte ich schon vorher"];
 
 function Screen({ onSubmit, data, nextRoute }) {
   const navigate = useNavigate();
   return (
-    <>
-      <p>Lasercutter...dein Ding?</p>
+    <div className="flex flex-col flex-grow">
+      <p>
+        Hat das Lokallabor dein Interesse für digitale Technologien geweckt?
+      </p>
       <div className="flex-grow flex justify-center">
         <VerticalGrid className="flex-grow">
           <SingleChoice
@@ -21,7 +23,7 @@ function Screen({ onSubmit, data, nextRoute }) {
           />
         </VerticalGrid>
       </div>
-    </>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
-import WeiterButton from "../../components/WeiterButton";
-import TextInput from "../../components/TextInput";
+import WeiterButton from "../../../components/WeiterButton";
+import TextInput from "../../../components/TextInput";
 
 function Screen({ onSubmit, data, nextRoute }) {
   return (

@@ -1,8 +1,8 @@
-import SingleChoice from "../../components/SingleChoiceTool";
+import SingleChoice from "../../../components/SingleChoiceTool";
 import { useNavigate } from "react-router-dom";
-import VerticalGrid from "../../components/VerticalGrid";
-import RobiGif from "../../components/RobiGif";
-import RobiTastaturAgroGif from "../../assets/robi-gifs/Robi_tastatur_agro-min.gif";
+import VerticalGrid from "../../../components/VerticalGrid";
+import RobiGif from "../../../components/RobiGif";
+import RobiTastaturAgroGif from "../../../assets/robi-gifs/Robi_tastatur_agro-min.gif";
 
 const ANSWER_OPTIONS = [
   "Gefällt mir",

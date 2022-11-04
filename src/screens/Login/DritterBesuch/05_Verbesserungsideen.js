@@ -1,7 +1,7 @@
-import WeiterButton from "../../components/WeiterButton";
-import MultipleChoiceTool from "../../components/MultipleChoiceTool";
-import TextInput from "../../components/TextInput";
-import VerticalGrid from "../../components/VerticalGrid";
+import WeiterButton from "../../../components/WeiterButton";
+import MultipleChoiceTool from "../../../components/MultipleChoiceTool";
+import TextInput from "../../../components/TextInput";
+import VerticalGrid from "../../../components/VerticalGrid";
 
 const ANSWER_OPTIONS = [
   "Technik",

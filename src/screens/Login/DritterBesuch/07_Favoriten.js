@@ -1,6 +1,6 @@
-import WeiterButton from "../../components/WeiterButton";
-import TextInput from "../../components/TextInput";
-import RobiGif from "../../components/RobiGif";
+import WeiterButton from "../../../components/WeiterButton";
+import TextInput from "../../../components/TextInput";
+import RobiGif from "../../../components/RobiGif";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {

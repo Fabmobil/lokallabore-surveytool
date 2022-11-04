@@ -1,7 +1,6 @@
-import WeiterButton from "../../components/WeiterButton";
-import Slider from "../../components/Slider";
-import imageTop from "../../assets/happy.png";
-import imageBottom from "../../assets/unhappy.png";
+import WeiterButton from "../../../components/WeiterButton";
+import Slider from "../../../components/Slider";
+import imageTop from "../../../assets/herz.png";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
@@ -10,12 +9,11 @@ function Screen({ onSubmit, data, nextRoute }) {
 
   return (
     <>
-      <p>Und wie findest du die Betreuung so im Lokallabor? </p>
+      <p>3D-Modelling rockt?</p>
       <Slider
         onChange={onSubmit}
         value={isNaN(data) ? 0 : data}
         imgTop={imageTop}
-        imgBottom={imageBottom}
       />
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>

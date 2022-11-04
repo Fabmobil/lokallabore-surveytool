@@ -1,10 +1,10 @@
-import WeiterButton from "../../components/WeiterButton";
-import SingleChoice from "../../components/SingleChoiceTool";
-import TextInput from "../../components/TextInput";
-import VerticalGrid from "../../components/VerticalGrid";
-import iconLasercutting from "../../assets/icon-lasercutting.png";
-import icon3DDruck from "../../assets/icon-3Ddruck.png";
-import iconMikro from "../../assets/icon-mikroelektronik.png";
+import WeiterButton from "../../../components/WeiterButton";
+import SingleChoice from "../../../components/SingleChoiceTool";
+import TextInput from "../../../components/TextInput";
+import VerticalGrid from "../../../components/VerticalGrid";
+import iconLasercutting from "../../../assets/icon-lasercutting.png";
+import icon3DDruck from "../../../assets/icon-3Ddruck.png";
+import iconMikro from "../../../assets/icon-mikroelektronik.png";
 import classNames from "classnames";
 
 const ANSWER_OPTIONS = ["3D-Druck", "Lasercutting", "Mikroelektronik"];

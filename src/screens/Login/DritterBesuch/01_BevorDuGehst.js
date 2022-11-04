@@ -1,4 +1,4 @@
-import ButtonNext from "../../components/ButtonNext";
+import ButtonNext from "../../../components/ButtonNext";
 
 function Screen({ nextRoute }) {
   return (

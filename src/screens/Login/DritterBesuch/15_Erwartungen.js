@@ -1,7 +1,7 @@
-import WeiterButton from "../../components/WeiterButton";
-import Slider from "../../components/Slider";
-import imageTop from "../../assets/happy.png";
-import imageBottom from "../../assets/unhappy.png";
+import WeiterButton from "../../../components/WeiterButton";
+import Slider from "../../../components/Slider";
+import imageTop from "../../../assets/happy.png";
+import imageBottom from "../../../assets/unhappy.png";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
@@ -10,7 +10,7 @@ function Screen({ onSubmit, data, nextRoute }) {
 
   return (
     <>
-      <p>Was hälst du von Virtual Reality?</p>
+      <p>Erfüllt das Lokallabor deine Erwartungen?</p>
       <Slider
         onChange={onSubmit}
         value={isNaN(data) ? 0 : data}

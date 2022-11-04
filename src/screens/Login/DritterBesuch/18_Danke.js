@@ -1,5 +1,5 @@
-import ButtonNext from "../../components/ButtonNext";
-import emojiHappy from "../../assets/happy.png";
+import ButtonNext from "../../../components/ButtonNext";
+import emojiHappy from "../../../assets/happy.png";
 
 function Screen({ globalData }) {
   return (
