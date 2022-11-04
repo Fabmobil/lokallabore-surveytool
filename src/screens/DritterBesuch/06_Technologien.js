@@ -1,13 +1,26 @@
 import WeiterButton from "../../components/WeiterButton";
-import MultipleChoiceTool from "../../components/MultipleChoiceTool";
+import SingleChoice from "../../components/SingleChoiceTool";
 import TextInput from "../../components/TextInput";
 import VerticalGrid from "../../components/VerticalGrid";
+import iconLasercutting from "../../assets/icon-lasercutting.png";
+import icon3DDruck from "../../assets/icon-3Ddruck.png";
+import iconMikro from "../../assets/icon-mikroelektronik.png";
+import classNames from "classnames";
 
 const ANSWER_OPTIONS = ["3D-Druck", "Lasercutting", "Mikroelektronik"];
+const ANSWER_ICONS = [icon3DDruck, iconLasercutting, iconMikro];
 
 function Screen({ onSubmit, data, nextRoute }) {
+  function handleSingleChoice(val) {
+    onSubmit({ predefinedValue: val, freeValue: "" });
+  }
+
+  function handleFreeValueInput(val) {
+    onSubmit({ freeValue: val });
+  }
+
   function hasUserAnswered() {
-    if (data && data.predefinedValues && data.predefinedValues.length > 0) {
+    if (data && data.predefinedValue && data.predefinedValue.length > 0) {
       return true;
     }
     if (data && data.freeValue && data.freeValue.length > 0) {
@@ -16,27 +29,32 @@ function Screen({ onSubmit, data, nextRoute }) {
     return false;
   }
 
-  function changePredefinedValues(data, vals) {
-    return { ...data, predefinedValues: vals };
-  }
-
-  function changeFreeValue(data, val) {
-    return { ...data, freeValue: val };
-  }
-
   return (
     <>
       <p>Mit welchen Technologien arbeitest du am am meisten? </p>
       <VerticalGrid>
-        <MultipleChoiceTool
-          options={ANSWER_OPTIONS}
-          onChange={(vals) => onSubmit(changePredefinedValues(data, vals))}
-          data={data && data.predefinedValues}
+        <SingleChoice
+          options={ANSWER_OPTIONS.map((el, i) => (
+            <>
+              <span>{el}</span>{" "}
+              <img
+                alt=""
+                src={ANSWER_ICONS[i]}
+                className={classNames(
+                  "absolute top-0",
+                  { "right-0": i % 2 === 0 },
+                  { "left-0": i % 2 !== 0 }
+                )}
+              />
+            </>
+          ))}
+          answer={data && data.predefinedValue}
+          onSelect={handleSingleChoice}
         />
         <TextInput
           placeholder="Andere"
           value={(data && data.freeValue) || ""}
-          onChange={(val) => onSubmit(changeFreeValue(data, val))}
+          onChange={(val) => handleFreeValueInput(val)}
         />
       </VerticalGrid>
 

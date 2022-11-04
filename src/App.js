@@ -5,6 +5,7 @@ import StartScreen from "./screens/0_Start";
 import SURVEY_REGISTRIERUNG from "./constants/survey-registrierung";
 import SURVEY_LOGIN from "./constants/survey-login";
 import SURVEY_DRITTERBESUCH from "./constants/survey-dritterbesuch";
+import SURVEY_GUEST from "./constants/survey-guest";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,6 +14,8 @@ class App extends React.Component {
     this.state = {
       surveyAnswersRegistrierung: {},
       surveyAnswersLogin: {},
+      surveyAnswersThirdVisit: {},
+      surveyAnswersGuest: {},
     };
   }
 
@@ -44,6 +47,21 @@ class App extends React.Component {
         ...this.state,
         surveyAnswersLogin: {
           ...this.state.surveyAnswersLogin,
+          [questionId]: answer,
+        },
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
+  }
+
+  logAnswerGuest(questionId, answer) {
+    this.setState(
+      {
+        ...this.state,
+        surveyAnswersGuest: {
+          ...this.state.surveyAnswersGuest,
           [questionId]: answer,
         },
       },
@@ -127,11 +145,30 @@ class App extends React.Component {
                   <item.screenComponent
                     nextRoute={this.getNextRoute(SURVEY_DRITTERBESUCH, i)}
                     onSubmit={(data) => {
-                      this.logAnswerLogin(item.questionId, data);
+                      this.logAnswerThirdVisit(item.questionId, data);
                     }}
-                    data={this.state.surveyAnswersLogin[item.questionId]}
+                    data={this.state.surveyAnswersThirdVisit[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal && (() => this.onFinalSubmitRegistrierung())
+                      item.isFinal && (() => this.onFinalSubmitThirdVisit())
+                    }
+                  ></item.screenComponent>
+                }
+              />
+            ))}
+
+            {SURVEY_GUEST.surveyItems.map((item, i) => (
+              <Route
+                key={item.questionId}
+                path={`${SURVEY_GUEST.baseUrl}/${item.questionId}`}
+                element={
+                  <item.screenComponent
+                    nextRoute={this.getNextRoute(SURVEY_GUEST, i)}
+                    onSubmit={(data) => {
+                      this.logAnswerGuest(item.questionId, data);
+                    }}
+                    data={this.state.surveyAnswersGuest[item.questionId]}
+                    onFinalSubmit={
+                      item.isFinal && (() => this.onFinalSubmitGuest())
                     }
                   ></item.screenComponent>
                 }

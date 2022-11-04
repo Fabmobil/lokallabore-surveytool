@@ -15,9 +15,10 @@ class SingleChoice extends React.Component {
     const { options, answer } = this.props;
     return (
       <>
-        {options.map((option) => (
+        {options.map((option, i) => (
           <Button
-            key={option}
+            key={i}
+            className="relative"
             isActive={this.isActive(option, answer)}
             onClick={() => {
               this.props.onSelect(option);

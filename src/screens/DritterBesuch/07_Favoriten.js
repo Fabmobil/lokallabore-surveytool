@@ -1,5 +1,6 @@
 import WeiterButton from "../../components/WeiterButton";
 import TextInput from "../../components/TextInput";
+import RobiGif from "../../components/RobiGif";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
@@ -10,6 +11,7 @@ function Screen({ onSubmit, data, nextRoute }) {
     <>
       <p>Hast du Favoriten unter den Techniken, Tools und Programmen?</p>
       <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      <RobiGif style={{ transform: "matrix(-0.96, 0.27, 0.27, 0.96, 0, 0)" }} />
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
   );

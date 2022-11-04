@@ -1,4 +1,5 @@
 import ButtonNext from "../../components/ButtonNext";
+import RobiGif from "../../components/RobiGif";
 
 function Screen({ globalData }) {
   return (
@@ -7,6 +8,7 @@ function Screen({ globalData }) {
         Danke <strong>{globalData.nickname || " "}</strong>! <br />
         Viel Spaß im Lokallabor!
       </p>
+      <RobiGif style={{ transform: "rotate(30deg)" }} />
       <ButtonNext to="/">Log Out</ButtonNext>
     </>
   );
