@@ -20,7 +20,7 @@
   height: auto;
 }
 
-@media (min-height: $breakpoint-height) {
+@media (min-height: 650px) {
   .FabSlider__elementTop,
   .FabSlider__elementBottom {
     width: 63px;
@@ -48,6 +48,17 @@
   position: absolute;
   bottom: 0;
   min-height: 10px;
+}
+
+.MuiSlider-thumbColorSecondary,
+.MuiSlider-track,
+.MuiSlider-rail,
+.MuiSlider-mark {
+  visibility: hidden;
+}
+
+.MuiSlider-root {
+  height: 250px !important;
 }
 
 .Logo {
