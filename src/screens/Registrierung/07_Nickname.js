@@ -12,7 +12,9 @@ function Screen({ onSubmit, data, nextRoute }) {
         Gib dir einen coolen Spitznamen! Damit meldest du dich künftig an.{" "}
         <strong>PS: Vergiss ihn nicht :)</strong>{" "}
       </p>
-      <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      <div className="vertical-center">
+        <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      </div>
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
   );

@@ -27,18 +27,20 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Warst du vorher schonmal im Lokallabor?</p>
-      <VerticalDoubleGrid>
-        <SingleChoice
-          options={ANSWER_OPTIONS}
-          answer={data && data.predefinedValue}
-          onSelect={handleSingleChoice}
-        />
-        <TextInput
-          className="col-span-2"
-          value={data ? data.freeValue : ""}
-          onChange={handleFreeValueInput}
-        />
-      </VerticalDoubleGrid>
+      <div className="vertical-center">
+        <VerticalDoubleGrid>
+          <SingleChoice
+            options={ANSWER_OPTIONS}
+            answer={data && data.predefinedValue}
+            onSelect={handleSingleChoice}
+          />
+          <TextInput
+            className="col-span-2"
+            value={data ? data.freeValue : ""}
+            onChange={handleFreeValueInput}
+          />
+        </VerticalDoubleGrid>
+      </div>
 
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>

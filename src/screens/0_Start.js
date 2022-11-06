@@ -3,11 +3,17 @@ import VerticalGrid from "../components/VerticalGrid";
 
 function Screen() {
   return (
-    <div className="bg-gray -m-6 flex-grow flex flex-col justify-center">
+    <div className="bg-gray -m-6 -mb-44 flex-grow flex flex-col justify-center">
       <VerticalGrid className="w-full px-4">
-        <ButtonNext to="/registrierung/start">Registrierung</ButtonNext>
-        <ButtonNext to="/login/anmeldung">Login</ButtonNext>
-        <ButtonNext to="/zugast/start">Ich bin zu Gast</ButtonNext>
+        <ButtonNext to="/registrierung/start" normalPositioning>
+          Registrierung
+        </ButtonNext>
+        <ButtonNext to="/login/anmeldung" normalPositioning>
+          Login
+        </ButtonNext>
+        <ButtonNext to="/gast/start" normalPositioning>
+          Ich bin zu Gast
+        </ButtonNext>
         <div className="grid grid-cols-3 gap-6 fixed w-full left-0 bottom-0">
           <div className="Logo Logo--palm flex-grow"></div>
           <div className="Logo Logo--drosos flex-grow"></div>

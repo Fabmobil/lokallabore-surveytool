@@ -15,16 +15,18 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Wie findest du programmieren? </p>
-      <VerticalGrid>
-        <SingleChoice
-          answer={data}
-          options={ANSWER_OPTIONS}
-          onSelect={(answer) => {
-            onSubmit(answer);
-            setTimeout(() => navigate(nextRoute), 500);
-          }}
-        />
-      </VerticalGrid>
+      <div className="vertical-center">
+        <VerticalGrid>
+          <SingleChoice
+            answer={data}
+            options={ANSWER_OPTIONS}
+            onSelect={(answer) => {
+              onSubmit(answer);
+              setTimeout(() => navigate(nextRoute), 500);
+            }}
+          />
+        </VerticalGrid>
+      </div>
       <RobiGif
         src={RobiTastaturAgroGif}
         style={{ transform: "rotate(12.74deg)" }}

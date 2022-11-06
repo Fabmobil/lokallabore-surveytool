@@ -11,8 +11,8 @@ function Screen({ onSubmit, data, nextRoute }) {
       <p>
         Hat das Lokallabor dein Interesse für digitale Technologien geweckt?
       </p>
-      <div className="flex-grow flex justify-center">
-        <VerticalGrid className="flex-grow">
+      <div className="vertical-center">
+        <VerticalGrid>
           <SingleChoice
             answer={data}
             options={ANSWER_OPTIONS}

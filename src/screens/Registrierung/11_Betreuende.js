@@ -9,16 +9,18 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Wieviele Betreuende sind heute im Lokallabor? </p>
-      <VerticalGrid>
-        <SingleChoice
-          answer={data}
-          options={ANSWER_OPTIONS}
-          onSelect={(answer) => {
-            onSubmit(answer);
-            setTimeout(() => navigate(nextRoute), 500);
-          }}
-        />
-      </VerticalGrid>
+      <div className="vertical-center">
+        <VerticalGrid>
+          <SingleChoice
+            answer={data}
+            options={ANSWER_OPTIONS}
+            onSelect={(answer) => {
+              onSubmit(answer);
+              setTimeout(() => navigate(nextRoute), 500);
+            }}
+          />
+        </VerticalGrid>
+      </div>
     </>
   );
 }

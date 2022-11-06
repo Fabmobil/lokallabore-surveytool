@@ -8,11 +8,12 @@ function ButtonNext({
   children,
   className,
   style,
+  normalPositioning,
 }) {
   const navigate = useNavigate();
   return (
     <Button
-      className={[className]}
+      className={[className, { "fixed bottom-14 right-6": !normalPositioning }]}
       disabled={disabled}
       style={style}
       onClick={() => {

@@ -9,7 +9,9 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Was möchtest du hier gerne machen?</p>
-      <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      <div className="flex flex-grow flex-col justify-center">
+        <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      </div>
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
   );

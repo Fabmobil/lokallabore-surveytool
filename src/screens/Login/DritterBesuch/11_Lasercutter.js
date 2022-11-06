@@ -9,8 +9,8 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Lasercutter...dein Ding?</p>
-      <div className="flex-grow flex justify-center">
-        <VerticalGrid className="flex-grow">
+      <div className="vertical-center">
+        <VerticalGrid>
           <SingleChoice
             answer={data}
             options={ANSWER_OPTIONS}

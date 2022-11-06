@@ -43,8 +43,10 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Wie alt bist du?</p>
-      <div ref={containerRef}>
-        <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      <div className="vertical-center">
+        <div ref={containerRef}>
+          <TextInput value={data} onChange={(val) => onSubmit(val)} />
+        </div>
       </div>
       <RobiGif
         className="fixed"

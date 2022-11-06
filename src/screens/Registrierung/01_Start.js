@@ -15,9 +15,7 @@ function Screen({ nextRoute }) {
         uns damit sehr weiterhilfst einzuschätzen, wie nice und gigantisch das
         Lokallabore- Netzwerk noch werden kann! 🔥🔥🔥{" "}
       </p>
-      <ButtonNext to={nextRoute} className="fixed bottom-14 right-6">
-        Alles klar!
-      </ButtonNext>
+      <ButtonNext to={nextRoute}>Alles klar!</ButtonNext>
     </div>
   );
 }

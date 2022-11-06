@@ -11,7 +11,9 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Was möchtest du hier gerne machen?</p>
-      <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      <div className="vertical-center">
+        <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      </div>
       <RobiGif
         src={RobiSliderGif}
         style={{ width: 263, transform: "rotate(159.46deg)" }}

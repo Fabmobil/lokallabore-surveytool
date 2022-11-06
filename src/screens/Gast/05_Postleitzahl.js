@@ -43,7 +43,7 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Wie lautet die Postleitzahl deines Heimatortes?</p>
-      <div ref={containerRef}>
+      <div ref={containerRef} className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
       <RobiGif

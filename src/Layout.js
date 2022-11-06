@@ -18,8 +18,8 @@ function Layout({ onLogoClick = () => {} }) {
           <Logo />
         </Link>
       </header>
-      <main className="bg-orange pt-20 min-h-screen flex flex-col">
-        <div className="p-6 flex-grow flex flex-col">
+      <main className="bg-orange pt-20 min-h-screen flex flex-col text-2xl">
+        <div className="p-6 flex-grow flex flex-col pb-44">
           <Outlet />
         </div>
       </main>

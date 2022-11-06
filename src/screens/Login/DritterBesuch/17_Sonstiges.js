@@ -5,7 +5,9 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Sonst noch was? </p>
-      <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      <div className="vertical-center">
+        <TextInput value={data} onChange={(val) => onSubmit(val)} />
+      </div>
       <WeiterButton navigateTo={nextRoute} />
     </>
   );

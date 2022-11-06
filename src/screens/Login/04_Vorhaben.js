@@ -43,7 +43,7 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Was möchtest du heute gerne machen?</p>
-      <div ref={containerRef}>
+      <div ref={containerRef} className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />

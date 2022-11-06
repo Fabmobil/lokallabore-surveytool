@@ -15,8 +15,8 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <div className="flex flex-col flex-grow">
       <p>Du kommst zu neuen Ideen...</p>
-      <div className="flex-grow flex justify-center">
-        <VerticalGrid className="flex-grow">
+      <div className="vertical-center">
+        <VerticalGrid>
           <SingleChoice
             answer={data}
             options={ANSWER_OPTIONS}
