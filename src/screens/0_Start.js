@@ -3,7 +3,7 @@ import VerticalGrid from "../components/VerticalGrid";
 
 function Screen() {
   return (
-    <div className="bg-gray -m-6 -mb-44 flex-grow flex flex-col justify-center">
+    <div className="bg-gray -m-6 md:-m-16 -mb-44 flex-grow flex flex-col justify-center">
       <VerticalGrid className="w-full px-4">
         <ButtonNext to="/registrierung/start" normalPositioning>
           Registrierung

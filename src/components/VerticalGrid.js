@@ -22,7 +22,7 @@ function VerticalGrid({ children, style, className }) {
   return (
     <div className={className}>
       <div
-        className="grid gap-5 overflow-y-scroll mx-auto max-w-2xl"
+        className="grid gap-5 md:gap-6 overflow-y-scroll mx-auto max-w-md"
         ref={containerRef}
       >
         {children}

@@ -5,7 +5,7 @@ function TextInput({ value, style, onChange, className, ...otherProps }) {
     <input
       type="text"
       className={classNames(
-        "h-16 w-full border-2 border-black text-inherit text-center",
+        "h-16 md:h-24 w-full border-2 border-black text-inherit text-center",
         className
       )}
       value={value}

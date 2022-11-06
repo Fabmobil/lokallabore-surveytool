@@ -5,7 +5,7 @@ function WeiterButton({ disabled, navigateTo, text, style }) {
     <ButtonNext
       disabled={disabled}
       to={navigateTo || "#"}
-      className="w-44 ml-auto"
+      className="w-44 md:w-64 ml-auto"
       style={style}
     >
       {text || "weiter"}

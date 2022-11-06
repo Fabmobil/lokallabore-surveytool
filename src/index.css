@@ -86,3 +86,7 @@
 .vertical-center {
   @apply flex-grow flex flex-col justify-center;
 }
+
+p {
+  margin-bottom: 1em;
+}

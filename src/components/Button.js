@@ -6,7 +6,7 @@ function Button({ disabled, className, onClick, style, isActive, children }) {
     <div
       onClick={onClick}
       className={classnames(
-        "max-w-4xl text-2xl border-black border-2 h-16 flex items-center justify-center cursor-pointer px-4",
+        "max-w-4xl text-2xl md:text-3xl border-black border-2 h-16 md:h-24 flex items-center justify-center cursor-pointer px-4",
         { "text-gray cursor-not-allowed": disabled },
         { "bg-white": !isActive },
         { "text-white bg-black": isActive },
