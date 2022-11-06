@@ -90,3 +90,14 @@
 p {
   margin-bottom: 1em;
 }
+
+@media (min-width: 768px) {
+  p {
+    max-width: 484px;
+  }
+}
+
+main {
+  /* max-width: 697px;
+  margin: 0 auto;*/
+}

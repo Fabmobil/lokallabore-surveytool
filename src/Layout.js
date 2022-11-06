@@ -4,7 +4,7 @@ import { ReactComponent as Logo } from "./assets/logo.svg";
 
 function Layout({ onLogoClick = () => {} }) {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-orange">
       <header className="bg-orange shadow-lg text-white h-20 flex items-center fixed w-full">
         <Link
           to="/"
