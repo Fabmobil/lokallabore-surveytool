@@ -23,7 +23,7 @@ function Layout({ onLogoClick = () => {} }) {
           <Outlet />
         </div>
       </main>
-      <div className="h-32 w-full fixed bottom-0 bg-orange"></div>
+      <div className="hidden h-32 w-full fixed bottom-0 bg-orange"></div>
     </div>
   );
 }
