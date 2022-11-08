@@ -1,5 +1,4 @@
 import { useRef, useState, useEffect } from "react";
-import classNames from "classnames";
 
 function VerticalGrid({ children, style, className }) {
   const containerRef = useRef(null);
