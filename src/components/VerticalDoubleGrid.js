@@ -1,5 +1,3 @@
-import { useRef, useState, useEffect } from "react";
-
 function VerticalGrid({ children, style, className }) {
   return (
     <div className={className}>

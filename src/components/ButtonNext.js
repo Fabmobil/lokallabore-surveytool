@@ -1,7 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
-import { isPromise } from "../helpers";
-import { click } from "@testing-library/user-event/dist/click";
 
 function ButtonNext({
   disabled,
