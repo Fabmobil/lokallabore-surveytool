@@ -65,8 +65,9 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  min-height: 100px;
-  max-width: 200px;
+  width: 100%;
+  max-width: 250px;
+  height: 100%;
 }
 
 .Logo--drosos {
@@ -83,8 +84,10 @@
   border-right: none;
 }
 
-.vertical-center {
-  @apply flex-grow flex flex-col justify-center;
+@media (max-width: 767px) {
+  .vertical-center {
+    @apply flex-grow flex flex-col justify-center;
+  }
 }
 
 p {

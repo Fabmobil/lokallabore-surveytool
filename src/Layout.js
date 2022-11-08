@@ -18,11 +18,12 @@ function Layout({ onLogoClick = () => {} }) {
           <Logo />
         </Link>
       </header>
-      <main className="bg-orange pt-20 min-h-screen flex flex-col text-2xl md:text-3xl">
-        <div className="p-6 md:p-16 flex-grow flex flex-col pb-44">
+      <main className="bg-orange pt-20 h-screen flex flex-col text-2xl md:text-3xl">
+        <div className="p-6 md:p-16 flex-grow flex flex-col">
           <Outlet />
         </div>
       </main>
+      <div className="h-32 w-full fixed bottom-0 bg-orange"></div>
     </div>
   );
 }

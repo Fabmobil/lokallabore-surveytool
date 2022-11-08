@@ -12,7 +12,8 @@ class SingleChoice extends React.Component {
   }
 
   render() {
-    const { options, answer } = this.props;
+    const { options, answer, addons } = this.props;
+    const hasAddons = addons && addons.length === options.length;
     return (
       <>
         {options.map((option, i) => (
@@ -25,6 +26,7 @@ class SingleChoice extends React.Component {
             }}
           >
             {option}
+            {hasAddons && addons[i]}
           </Button>
         ))}
       </>

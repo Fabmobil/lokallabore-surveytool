@@ -34,20 +34,18 @@ function Screen({ onSubmit, data, nextRoute }) {
       <p>Mit welchen Technologien arbeitest du am am meisten? </p>
       <VerticalGrid>
         <SingleChoice
-          options={ANSWER_OPTIONS.map((el, i) => (
-            <>
-              <span>{el}</span>{" "}
-              <img
-                alt=""
-                src={ANSWER_ICONS[i]}
-                className={classNames(
-                  "absolute top-0",
-                  { "right-0": i % 2 === 0 },
-                  { "left-0": i % 2 !== 0 }
-                )}
-              />
-            </>
+          addons={ANSWER_ICONS.map((el, i) => (
+            <img
+              alt=""
+              src={el}
+              className={classNames(
+                "absolute top-0",
+                { "right-0": i % 2 === 0 },
+                { "left-0": i % 2 !== 0 }
+              )}
+            />
           ))}
+          options={ANSWER_OPTIONS}
           answer={data && data.predefinedValue}
           onSelect={handleSingleChoice}
         />

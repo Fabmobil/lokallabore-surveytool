@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 
-function VerticalGrid({ children, style, className }) {
+function VerticalGrid({ children = [], className }) {
   const containerRef = useRef(null);
   const [hasOverflow, setHasOverflow] = useState(false);
   console.log(hasOverflow);
@@ -17,6 +17,8 @@ function VerticalGrid({ children, style, className }) {
       window.removeEventListener("resize", checkOverflow);
     };
   }, []);
+
+  console.log("...", children);
 
   return (
     <div className={className}>
