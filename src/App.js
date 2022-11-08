@@ -6,15 +6,15 @@ import SURVEY_REGISTRIERUNG from "./constants/survey-registrierung";
 import SURVEY_LOGIN from "./constants/survey-login";
 import SURVEY_LOGIN_DRITTERBESUCH from "./constants/survey-login-dritterbesuch";
 import SURVEY_GUEST from "./constants/survey-guest";
+import FirebaseClient from "./firebase/client";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    //this.firebaseClient = new FirebaseClient();
+    this.firebaseClient = new FirebaseClient();
     this.state = {
       surveyAnswersRegistrierung: {},
       surveyAnswersLogin: {},
-      surveyAnswersThirdVisit: {},
       surveyAnswersGuest: {},
     };
   }
@@ -71,6 +71,54 @@ class App extends React.Component {
     );
   }
 
+  submitAllAnswersRegistrierung() {
+    const data = {
+      ...this.state.surveyAnswersRegistrierung,
+      date: new Date().toLocaleString(),
+    };
+    console.log("submitted data", data);
+    this.firebaseClient
+      .postAnswersRegistrierung(data)
+      .catch((err) => alert("Etwas ist schief gelaufen.."));
+  }
+
+  submitAllAnswersLogin() {
+    const data = {
+      ...this.state.surveyAnswersLogin,
+      date: new Date().toLocaleString(),
+    };
+    console.log("submitted data", data);
+    this.firebaseClient
+      .postAnswersLogin(data)
+      .catch((err) => alert("Etwas ist schief gelaufen.."));
+  }
+
+  submitAllAnswersGuest() {
+    const data = {
+      ...this.state.surveyAnswersGuest,
+      date: new Date().toLocaleString(),
+    };
+    console.log("submitted data", data);
+    this.firebaseClient
+      .postAnswersGuest(data)
+      .catch((err) => alert("Etwas ist schief gelaufen.."));
+  }
+
+  onFinalSubmitRegistrierung() {
+    this.submitAllAnswersRegistrierung();
+    this.resetSurveyData();
+  }
+
+  onFinalSubmitGuest() {
+    this.submitAllAnswersGuest();
+    this.resetSurveyData();
+  }
+
+  onFinalSubmitLogin() {
+    this.submitAllAnswersLogin();
+    this.resetSurveyData();
+  }
+
   getNextRoute(schema, i) {
     if (i + 1 < schema.surveyItems.length) {
       return "/" + schema.baseUrl + "/" + schema.surveyItems[i + 1].questionId;
@@ -111,7 +159,9 @@ class App extends React.Component {
                         this.state.surveyAnswersRegistrierung["nickname"],
                     }}
                     onFinalSubmit={
-                      item.isFinal && (() => this.onFinalSubmitRegistrierung())
+                      item.isFinal
+                        ? () => this.onFinalSubmitRegistrierung()
+                        : () => {}
                     }
                   ></item.screenComponent>
                 }
@@ -130,7 +180,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal && (() => this.onFinalSubmitLogin())
+                      item.isFinal ? () => this.onFinalSubmitLogin() : () => {}
                     }
                   ></item.screenComponent>
                 }
@@ -149,7 +199,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal && (() => this.onFinalSubmitLogin())
+                      item.isFinal ? () => this.onFinalSubmitLogin() : () => {}
                     }
                   ></item.screenComponent>
                 }
@@ -168,7 +218,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersGuest[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal && (() => this.onFinalSubmitGuest())
+                      item.isFinal ? () => this.onFinalSubmitGuest() : () => {}
                     }
                   ></item.screenComponent>
                 }

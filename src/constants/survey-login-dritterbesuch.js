@@ -87,6 +87,7 @@ const SURVEY_LOGIN_DRITTERBESUCH = {
     {
       questionId: "sonstiges",
       screenComponent: S17Sonstiges,
+      isFinal: true,
     },
     {
       questionId: "danke",

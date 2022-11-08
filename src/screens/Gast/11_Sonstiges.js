@@ -3,7 +3,7 @@ import TextInput from "../../components/TextInput";
 import RobiGif from "../../components/RobiGif";
 import RobiFlameGif from "../../assets/robi-gifs/Robi_flamme-min.gif";
 
-function Screen({ onSubmit, data, nextRoute }) {
+function Screen({ onSubmit, onFinalSubmit, data, nextRoute }) {
   return (
     <>
       <p>Sonst noch was?</p>
@@ -11,7 +11,7 @@ function Screen({ onSubmit, data, nextRoute }) {
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
       <RobiGif src={RobiFlameGif} />
-      <WeiterButton navigateTo={nextRoute} />
+      <WeiterButton onClick={onFinalSubmit} navigateTo={nextRoute} />
     </>
   );
 }

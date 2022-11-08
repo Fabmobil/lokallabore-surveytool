@@ -72,6 +72,7 @@ const SURVEY_REGISTRIERUNG = {
     {
       questionId: "sonstiges",
       screenComponent: S14Sonstiges,
+      isFinal: true,
     },
     {
       questionId: "logout",

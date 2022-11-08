@@ -24,7 +24,7 @@ const SURVEY_GUEST = {
     { questionId: "vorhaben", screenComponent: S08Vorhaben },
     { questionId: "werbung", screenComponent: S09Werbung },
     { questionId: "teilhabe", screenComponent: S10Teilhabe },
-    { questionId: "sonstiges", screenComponent: S11Sonstiges },
+    { questionId: "sonstiges", screenComponent: S11Sonstiges, isFinal: true },
     { questionId: "ende", screenComponent: S12Ende },
   ],
 };

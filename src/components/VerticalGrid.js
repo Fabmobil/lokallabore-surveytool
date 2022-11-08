@@ -18,8 +18,6 @@ function VerticalGrid({ children = [], className }) {
     };
   }, []);
 
-  console.log("...", children);
-
   return (
     <div className={className}>
       <div

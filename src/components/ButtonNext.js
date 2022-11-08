@@ -4,7 +4,9 @@ import Button from "./Button";
 function ButtonNext({
   disabled,
   to,
-  onClick = () => {},
+  onClick = () => {
+    console.log("click");
+  },
   children,
   className,
   style,

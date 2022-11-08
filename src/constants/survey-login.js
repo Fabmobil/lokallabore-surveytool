@@ -32,6 +32,7 @@ const SURVEY_LOGIN = {
     {
       questionId: "kritik",
       screenComponent: S06Kritik,
+      isFinal: true,
     },
     {
       questionId: "logout",
