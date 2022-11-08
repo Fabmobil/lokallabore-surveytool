@@ -1,5 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import Button from "./Button";
+import { isPromise } from "../helpers";
+import { click } from "@testing-library/user-event/dist/click";
 
 function ButtonNext({
   disabled,
@@ -23,8 +25,22 @@ function ButtonNext({
       style={style}
       onClick={() => {
         if (disabled) return;
-        onClick();
-        navigate(to);
+        try {
+          console.log("in try");
+          //if onClick is Promise/thenable
+          onClick()
+            .then(() => {
+              navigate(to);
+            })
+            .catch(() => {
+              alert("Ein Problem ist aufgetreten");
+              return;
+            });
+        } catch {
+          //if its not a Promise
+          onClick();
+          navigate(to);
+        }
       }}
     >
       {children || "..."}

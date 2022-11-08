@@ -2,11 +2,15 @@ import WeiterButton from "../../components/WeiterButton";
 import VerticalGrid from "../../components/VerticalGrid";
 import TextInput from "../../components/TextInput";
 
-function Screen({ onSubmit, data, nextRoute }) {
+function Screen({ onSubmit, data, nextRoute, firebaseClient }) {
   function hasUserAnswered() {
     if (!data) return false;
     return !!data.nickname && !!data.day && !!data.month && !!data.year;
   }
+  const userID = data
+    ? `${data.nickname}${data.day}${data.month}${data.year}`
+    : "";
+
   return (
     <>
       <p>Melde dich mit deinem Spitznamen und Geburtstag an :)</p>
@@ -35,7 +39,18 @@ function Screen({ onSubmit, data, nextRoute }) {
           />
         </VerticalGrid>
       </div>
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
+      <WeiterButton
+        disabled={!hasUserAnswered()}
+        onClick={() => {
+          return firebaseClient.userDoesExist(userID).then((doesExist) => {
+            if (!doesExist) {
+              alert("Dieser Benutzername/Geburtstag existiert nicht!");
+              throw Error();
+            }
+          });
+        }}
+        navigateTo={nextRoute}
+      />
     </>
   );
 }

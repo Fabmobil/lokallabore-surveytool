@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, set } from "firebase/database"; //import getterFunction of database service
+import { getDatabase, ref, push, set, get, child } from "firebase/database"; //import getterFunction of database service
 import firebaseConfig from "./config.js";
 
 class Client {
@@ -9,20 +9,6 @@ class Client {
     this.db = getDatabase(this.app);
     this.dbRef = ref(this.db);
   }
-
-  // get() {
-  //   get(child(this.dbRef, `foo`))
-  //     .then((snapshot) => {
-  //       if (snapshot.exists()) {
-  //         console.log(snapshot.val());
-  //       } else {
-  //         console.log("No data available");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // }
 
   postAnswersRegistrierung(data) {
     const answerListRef = ref(this.db, "answersRegistrierung");
@@ -46,6 +32,21 @@ class Client {
     const userListRef = ref(this.db, "users");
     const newUserRef = push(userListRef);
     return set(newUserRef, data);
+  }
+
+  userDoesExist(userId) {
+    return get(child(this.dbRef, `users`)).then((snapshot) => {
+      if (!userId) throw Error("No userID given");
+      if (snapshot.exists()) {
+        try {
+          return Object.values(snapshot.val()).includes(userId);
+        } catch {
+          throw Error;
+        }
+      } else {
+        throw Error;
+      }
+    });
   }
 }
 

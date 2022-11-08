@@ -96,9 +96,19 @@ class App extends React.Component {
   createNewUser() {
     const { nickname, geburtstag } = this.state.surveyAnswersRegistrierung;
     const userID = `${nickname}${geburtstag.day}${geburtstag.month}${geburtstag.year}`;
-    this.firebaseClient
-      .postUser(userID)
-      .catch((err) => alert("Etwas ist schief gelaufen.."));
+
+    this.firebaseClient.userDoesExist(userID).then((doesExist) => {
+      if (doesExist) {
+        alert(
+          "Dieser Benutzername/Geburtstag existiert bereits, bitte denk dir einen anderen Nicknamen aus!"
+        );
+        throw Error();
+      } else {
+        return this.firebaseClient
+          .postUser(userID)
+          .catch((err) => alert("Etwas ist schief gelaufen.."));
+      }
+    });
   }
 
   submitAllAnswersGuest() {
@@ -192,6 +202,7 @@ class App extends React.Component {
                     onFinalSubmit={
                       item.isFinal ? () => this.onFinalSubmitLogin() : () => {}
                     }
+                    firebaseClient={this.firebaseClient}
                   ></item.screenComponent>
                 }
               />
