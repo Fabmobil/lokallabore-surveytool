@@ -1,10 +1,12 @@
 import WeiterButton from "../../components/WeiterButton";
 import TextInput from "../../components/TextInput";
+import { useNavigate } from "react-router-dom";
 
-function Screen({ onSubmit, data, nextRoute }) {
+function Screen({ onSubmit, data, nextRoute, onNicknameSubmit }) {
   function hasUserAnswered() {
     return !!data;
   }
+  const navigate = useNavigate();
 
   return (
     <>
@@ -15,7 +17,20 @@ function Screen({ onSubmit, data, nextRoute }) {
       <div className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
+      <WeiterButton
+        disabled={!hasUserAnswered()}
+        onClick={() => {
+          try {
+            onNicknameSubmit();
+          } catch {
+            alert("Es ist etwas schief gegangen");
+            window.setTimeout(() => {
+              navigate("/");
+            }, 200);
+          }
+        }}
+        navigateTo={nextRoute}
+      />
     </>
   );
 }

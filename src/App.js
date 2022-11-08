@@ -93,6 +93,14 @@ class App extends React.Component {
       .catch((err) => alert("Etwas ist schief gelaufen.."));
   }
 
+  createNewUser() {
+    const { nickname, geburtstag } = this.state.surveyAnswersRegistrierung;
+    const userID = `${nickname}${geburtstag.day}${geburtstag.month}${geburtstag.year}`;
+    this.firebaseClient
+      .postUser(userID)
+      .catch((err) => alert("Etwas ist schief gelaufen.."));
+  }
+
   submitAllAnswersGuest() {
     const data = {
       ...this.state.surveyAnswersGuest,
@@ -116,6 +124,7 @@ class App extends React.Component {
 
   onFinalSubmitLogin() {
     this.submitAllAnswersLogin();
+
     this.resetSurveyData();
   }
 
@@ -158,6 +167,7 @@ class App extends React.Component {
                       nickname:
                         this.state.surveyAnswersRegistrierung["nickname"],
                     }}
+                    onNicknameSubmit={() => this.createNewUser()}
                     onFinalSubmit={
                       item.isFinal
                         ? () => this.onFinalSubmitRegistrierung()

@@ -41,6 +41,12 @@ class Client {
     const newAnswerRef = push(answerListRef);
     return set(newAnswerRef, data);
   }
+
+  postUser(data) {
+    const userListRef = ref(this.db, "users");
+    const newUserRef = push(userListRef);
+    return set(newUserRef, data);
+  }
 }
 
 export default Client;
