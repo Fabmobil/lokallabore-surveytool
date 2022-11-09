@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Ein Umfragetool für die Lokallabore
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
