@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
+import Layout2 from "./Layout2";
 import StartScreen from "./screens/0_Start";
 import SURVEY_REGISTRIERUNG from "./constants/survey-registrierung";
 import SURVEY_LOGIN from "./constants/survey-login";
@@ -149,6 +150,9 @@ class App extends React.Component {
     return (
       <BrowserRouter>
         <Routes>
+          <Route path="" element={<Layout2 />}>
+            <Route path="" element={<StartScreen />}></Route>
+          </Route>
           <Route
             path="/"
             element={
@@ -159,7 +163,7 @@ class App extends React.Component {
               />
             }
           >
-            <Route path="" element={<StartScreen />} />
+
             {SURVEY_REGISTRIERUNG.surveyItems.map((item, i) => (
               <Route
                 key={item.questionId}
@@ -181,7 +185,7 @@ class App extends React.Component {
                     onFinalSubmit={
                       item.isFinal
                         ? () => this.onFinalSubmitRegistrierung()
-                        : () => {}
+                        : () => { }
                     }
                   ></item.screenComponent>
                 }
@@ -200,7 +204,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal ? () => this.onFinalSubmitLogin() : () => {}
+                      item.isFinal ? () => this.onFinalSubmitLogin() : () => { }
                     }
                     firebaseClient={this.firebaseClient}
                   ></item.screenComponent>
@@ -220,7 +224,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal ? () => this.onFinalSubmitLogin() : () => {}
+                      item.isFinal ? () => this.onFinalSubmitLogin() : () => { }
                     }
                   ></item.screenComponent>
                 }
@@ -239,7 +243,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersGuest[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal ? () => this.onFinalSubmitGuest() : () => {}
+                      item.isFinal ? () => this.onFinalSubmitGuest() : () => { }
                     }
                   ></item.screenComponent>
                 }

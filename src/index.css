@@ -21,6 +21,7 @@
 }
 
 @media (min-height: 650px) {
+
   .FabSlider__elementTop,
   .FabSlider__elementBottom {
     width: 63px;
@@ -73,9 +74,11 @@
 .Logo--drosos {
   background-image: url("./assets/supporters/Drosos-logo.png");
 }
+
 .Logo--beisheim {
   background-image: url("./assets/supporters/Beisheim-logo-schwarz.png");
 }
+
 .Logo--palm {
   background-image: url("./assets/supporters/Logo-Palm-Stiftung.png");
 }
@@ -87,6 +90,7 @@
 @media (max-width: 767px) {
   .vertical-center {
     @apply flex-grow flex flex-col justify-center;
+    padding-bottom: 96px;
   }
 }
 

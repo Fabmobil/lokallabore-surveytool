@@ -4,24 +4,18 @@ import { ReactComponent as Logo } from "./assets/logo.svg";
 
 function Layout({ onLogoClick = () => { } }) {
   return (
-    <div className="min-h-screen bg-orange">
+    <div className="min-h-screen bg-gray">
       <header className="bg-orange shadow-lg text-white h-20 flex items-center fixed w-full">
         <Link
           to="/"
           className="mx-auto"
-          onClick={(e) => {
-            window.confirm("Bist du sicher, dass du von vorn starten möchtest?")
-              ? onLogoClick()
-              : e.preventDefault();
-          }}
+
         >
           <Logo />
         </Link>
       </header>
-      <main className="bg-orange pt-20 h-screen flex flex-col text-2xl md:text-3xl">
-        <div className="p-6 md:p-16 flex-grow flex flex-col w-100 max-w-screen-md mx-auto">
-          <Outlet />
-        </div>
+      <main className="bg-gray pt-20 h-screen overflow-hidden flex flex-col text-2xl md:text-3xl">
+        <Outlet />
       </main>
       <div className="hidden h-32 w-full fixed bottom-0 bg-orange"></div>
     </div>
