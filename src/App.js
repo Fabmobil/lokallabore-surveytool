@@ -96,7 +96,7 @@ class App extends React.Component {
 
   createNewUser() {
     const { nickname, geburtstag } = this.state.surveyAnswersRegistrierung;
-    const userID = `${nickname}${geburtstag.day}${geburtstag.month}${geburtstag.year}`;
+    const userID = this.firebaseClient.createUserID(nickname, geburtstag);
 
     this.firebaseClient.userDoesExist(userID).then((doesExist) => {
       if (doesExist) {
@@ -203,6 +203,10 @@ class App extends React.Component {
                       this.logAnswerLogin(item.questionId, data);
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
+                    globalData={{
+                      nickname:
+                        this.state.surveyAnswersLogin["nickname"],
+                    }}
                     onFinalSubmit={
                       item.isFinal ? () => this.onFinalSubmitLogin() : () => { }
                     }

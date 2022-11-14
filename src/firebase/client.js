@@ -10,6 +10,11 @@ class Client {
     this.dbRef = ref(this.db);
   }
 
+  createUserID(nickname, geburtstag) {
+    if (!nickname || !geburtstag) { throw Error("Can't create nickname") }
+    return `${nickname}${geburtstag.day}${geburtstag.month}${geburtstag.year}`;
+  }
+
   postAnswersRegistrierung(data) {
     const answerListRef = ref(this.db, "answersRegistrierung");
     const newAnswerRef = push(answerListRef);
@@ -48,6 +53,11 @@ class Client {
       }
     });
   }
+
+  getNumberOfVisits() {
+    return 3; //TODO query real data
+  }
+
 }
 
 export default Client;
