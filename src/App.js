@@ -20,6 +20,14 @@ class App extends React.Component {
     };
   }
 
+  getValueOrNone(surveyState, val1, val2) {
+    try {
+      return val2 ? surveyState[val1][val2] : surveyState[val1]
+    } catch {
+      return undefined
+    }
+  }
+
   resetSurveyData() {
     this.setState({
       surveyAnswersRegistrierung: {},
@@ -125,7 +133,6 @@ class App extends React.Component {
 
   onFinalSubmitRegistrierung() {
     this.submitAllAnswersRegistrierung();
-    this.resetSurveyData();
   }
 
   onFinalSubmitGuest() {
@@ -187,6 +194,8 @@ class App extends React.Component {
                         ? () => this.onFinalSubmitRegistrierung()
                         : () => { }
                     }
+                    onLogout={this.resetSurveyData}
+
                   ></item.screenComponent>
                 }
               />
@@ -205,7 +214,7 @@ class App extends React.Component {
                     data={this.state.surveyAnswersLogin[item.questionId]}
                     globalData={{
                       nickname:
-                        this.state.surveyAnswersLogin["nickname"],
+                        this.getValueOrNone(this.state.surveyAnswersLogin, "anmeldung", "nickname")
                     }}
                     onFinalSubmit={
                       item.isFinal ? () => this.onFinalSubmitLogin() : () => { }

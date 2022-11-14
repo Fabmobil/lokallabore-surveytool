@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 
 const ANSWER_OPTIONS = ["Annaberg-Buchholz", "Löbau", "Weißwasser", "Plauen"];
 
-function Screen({ onSubmit, data, nextRoute }) {
+function Screen({ onSubmit, data, nextRoute, globalData }) {
   const navigate = useNavigate();
   return (
     <div className="flex flex-col flex-grow">
       <p>
-        Hey <span className="font-bold">Nickname</span>! <br /> <br />
+        Hey <span className="font-bold">{globalData.nickname}</span>! <br /> <br />
         Schön, dass du wieder da bist! In welchem Lokallabor bist du gerade?
       </p>
       <div className="vertical-center">

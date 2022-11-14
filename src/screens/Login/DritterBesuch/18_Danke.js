@@ -5,7 +5,7 @@ function Screen({ globalData }) {
   return (
     <>
       <p>
-        Danke <strong>Nickname</strong> für deine Mühe! <br />
+        Danke <span className="font-bold">{globalData.nickname}</span> für deine Mühe! <br />
         <br />
         Als Dank gibts hier für dich einen supernicen Emoji-Maker
       </p>

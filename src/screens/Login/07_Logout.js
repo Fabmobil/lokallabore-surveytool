@@ -5,7 +5,7 @@ function Screen({ globalData }) {
   return (
     <>
       <p>
-        Danke <span className="font-bold">Nickname</span> für deine Anmeldung! <br />
+        Danke <span className="font-bold">{globalData.nickname}</span> für deine Anmeldung! <br />
         <br />
         Logge dich aus und genieße deinen Aufenthalt im Lokallabor!
       </p>
