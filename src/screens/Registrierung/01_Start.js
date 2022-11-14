@@ -4,7 +4,7 @@ function Screen({ nextRoute }) {
   return (
     <div>
       <p>
-        <strong> Hey! Willkommen in den Lokallaboren! </strong>
+        <span className="font-bold"> Hey! Willkommen in den Lokallaboren! </span>
         <br />
         <br /> Die Lokallabore sind mittlerweile feste Orte und wir würden
         natürlich noch gerne wissen, wie du mit dem Lokallabore-Projekt so

@@ -9,7 +9,7 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <div className="flex flex-col flex-grow">
       <p>
-        Hey <strong>Nickname</strong>! <br /> <br />
+        Hey <span className="font-bold">Nickname</span>! <br /> <br />
         Schön, dass du wieder da bist! In welchem Lokallabor bist du gerade?
       </p>
       <div className="vertical-center">

@@ -5,7 +5,7 @@ function Screen({ globalData, nextRoute }) {
   return (
     <>
       <p>
-        Danke <strong>{globalData.nickname}</strong>! <br /> Dein
+        Danke <span className="font-bold">{globalData.nickname}</span>! <br /> Dein
         Lokallabore-Account wurde erfolgreich erstellt! <br />
         <br />
         Weil die App neu für dich ist, hätten wir noch kurz ein paar Fragen

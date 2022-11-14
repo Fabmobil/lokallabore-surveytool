@@ -5,7 +5,7 @@ function Screen({ globalData }) {
   return (
     <>
       <p>
-        <strong>Dankeschön!</strong>
+        <span className="font-bold">Dankeschön!</span>
         <br />
         <br />
         Dankeschön! Viel Spaß auf der Veranstaltung des Lokallabors!

@@ -21,7 +21,7 @@ function Screen({ onSubmit, data, nextRoute, onFinalSubmit }) {
       </div>
 
       <WeiterButton
-        onClick={isThirdVisit ? () => {} : onFinalSubmit}
+        onClick={isThirdVisit ? () => { } : onFinalSubmit}
         navigateTo={isThirdVisit ? firstRouteThirdVisit : nextRoute}
       />
     </>

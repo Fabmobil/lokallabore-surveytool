@@ -12,7 +12,8 @@ function Screen({ onSubmit, data, nextRoute, onNicknameSubmit }) {
     <>
       <p>
         Gib dir einen coolen Spitznamen! Damit meldest du dich künftig an.{" "}
-        <strong>PS: Vergiss ihn nicht :)</strong>{" "}
+        <br /><br />
+        <span className="font-bold">PS: Vergiss ihn nicht :)</span>
       </p>
       <div className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
