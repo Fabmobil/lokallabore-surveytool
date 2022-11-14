@@ -194,7 +194,7 @@ class App extends React.Component {
                         ? () => this.onFinalSubmitRegistrierung()
                         : () => { }
                     }
-                    onLogout={this.resetSurveyData}
+                    onLogout={() => this.resetSurveyData()}
 
                   ></item.screenComponent>
                 }

@@ -8,7 +8,7 @@ function Screen({ onSubmit, onFinalSubmit, data, nextRoute }) {
       <div className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
-      <WeiterButton onClick={onFinalSubmit} navigateTo={nextRoute} />
+      <WeiterButton onClick={onFinalSubmit} navigateTo={nextRoute} text={"Und fertig!"} />
     </>
   );
 }

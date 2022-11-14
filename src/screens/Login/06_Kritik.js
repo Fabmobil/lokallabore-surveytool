@@ -34,6 +34,7 @@ function Screen({ onSubmit, data, nextRoute, onFinalSubmit, firebaseClient }) {
       </div>
 
       <WeiterButton
+        text={!isThirdVisit(numberVisits) ? "Und fertig!" : ""}
         disabled={numberVisits == false}
         onClick={isThirdVisit(numberVisits) ? () => { } : onFinalSubmit}
         navigateTo={isThirdVisit(numberVisits) ? firstRouteThirdVisit : nextRoute}
