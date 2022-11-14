@@ -54,8 +54,17 @@ class Client {
     });
   }
 
-  getNumberOfVisits() {
-    return 3; //TODO query real data
+  getNumberOfVisits(userId) {
+    const answerListRef = ref(this.db, "answersLogin");
+    console.log(answerListRef)
+    return 3; //TODO add logic
+  }
+
+  logVisit(userId) {
+    set(ref(this.db, 'visitsByUserId/' + userId), {
+      hello: "world"
+    });
+
   }
 
 }

@@ -7,10 +7,6 @@ function Screen({ onSubmit, data, nextRoute, firebaseClient }) {
     if (!data) return false;
     return !!data.nickname && !!data.day && !!data.month && !!data.year;
   }
-  const userID = data
-    ? `${data.nickname}${data.day}${data.month}${data.year}`
-    : "";
-
   return (
     <>
       <p>Melde dich mit deinem Spitznamen und Geburtstag an :)</p>
@@ -42,6 +38,7 @@ function Screen({ onSubmit, data, nextRoute, firebaseClient }) {
       <WeiterButton
         disabled={!hasUserAnswered()}
         onClick={() => {
+          const userID = firebaseClient.createUserID(data.nickname, { day: data.day, month: data.month, year: data.year });
           return firebaseClient.userDoesExist(userID).then((doesExist) => {
             if (!doesExist) {
               alert("Dieser Benutzername/Geburtstag existiert nicht!");

@@ -24,7 +24,6 @@ function ButtonNext({
       onClick={() => {
         if (disabled) return;
         try {
-          console.log("in try");
           //if onClick is Promise/thenable
           onClick()
             .then(() => {
