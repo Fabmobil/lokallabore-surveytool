@@ -106,16 +106,16 @@ class App extends React.Component {
     const { nickname, geburtstag } = this.state.surveyAnswersRegistrierung;
     const userID = this.firebaseClient.createUserID(nickname, geburtstag);
 
-    this.firebaseClient.userDoesExist(userID).then((doesExist) => {
+    return this.firebaseClient.userDoesExist(userID).then((doesExist) => {
       if (doesExist) {
+        console.log("Does exist!!!")
         alert(
-          "Dieser Benutzername/Geburtstag existiert bereits, bitte denk dir einen anderen Nicknamen aus!"
+          "Dieser Nickname mit diesem Geburtsdatum existiert bereits, bitte denk dir einen anderen Nicknamen aus!"
         );
         throw Error();
       } else {
-        return this.firebaseClient
+        this.firebaseClient
           .postUser(userID)
-          .catch((err) => alert("Etwas ist schief gelaufen.."));
       }
     });
   }

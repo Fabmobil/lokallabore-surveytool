@@ -21,14 +21,12 @@ function Screen({ onSubmit, data, nextRoute, onNicknameSubmit }) {
       <WeiterButton
         disabled={!hasUserAnswered()}
         onClick={() => {
-          try {
-            onNicknameSubmit();
-          } catch {
-            alert("Es ist etwas schief gegangen");
+          onNicknameSubmit().catch(() => {
             window.setTimeout(() => {
-              navigate("/");
-            }, 200);
-          }
+              navigate("/registrierung/nickname");
+            }, 100);
+          });
+
         }}
         navigateTo={nextRoute}
       />

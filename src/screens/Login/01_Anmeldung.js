@@ -41,7 +41,7 @@ function Screen({ onSubmit, data, nextRoute, firebaseClient }) {
           const userID = firebaseClient.createUserID(data.nickname, { day: data.day, month: data.month, year: data.year });
           return firebaseClient.userDoesExist(userID).then((doesExist) => {
             if (!doesExist) {
-              alert("Dieser Benutzername/Geburtstag existiert nicht!");
+              alert("Dieser Nickname mit diesem Geburtsdatum existiert nicht!");
               throw Error();
             }
           });
