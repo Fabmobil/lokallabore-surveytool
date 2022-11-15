@@ -2,9 +2,12 @@ import WeiterButton from "../../components/WeiterButton";
 import TextInput from "../../components/TextInput";
 import { useNavigate } from "react-router-dom";
 
+//nur kleinbuchstaben und keine zahlen und keine sonderzeichen
+const nickNamePattern = /^[a-z]{2,15}$/
+
 function Screen({ onSubmit, data, nextRoute, onNicknameSubmit }) {
   function hasUserAnswered() {
-    return !!data;
+    return !!data && nickNamePattern.test(data);
   }
   const navigate = useNavigate();
 

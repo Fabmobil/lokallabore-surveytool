@@ -142,7 +142,6 @@ class App extends React.Component {
 
   onFinalSubmitLogin() {
     this.submitAllAnswersLogin();
-
     this.resetSurveyData();
   }
 
