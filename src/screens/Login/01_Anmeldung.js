@@ -1,8 +1,10 @@
 import WeiterButton from "../../components/WeiterButton";
 import VerticalGrid from "../../components/VerticalGrid";
 import TextInput from "../../components/TextInput";
+import { useNavigate } from "react-router";
 
-function Screen({ onSubmit, data, nextRoute, firebaseClient }) {
+function Screen({ onSubmit, data, nextRoute, firebaseClient, onLogin }) {
+  const navigate = useNavigate();
   function hasUserAnswered() {
     if (!data) return false;
     return !!data.nickname && !!data.day && !!data.month && !!data.year;
@@ -44,9 +46,9 @@ function Screen({ onSubmit, data, nextRoute, firebaseClient }) {
               alert("Dieser Nickname mit diesem Geburtsdatum existiert nicht!");
               throw Error();
             }
-          });
+            onLogin(userID);
+          }).then(() => { navigate(nextRoute) });
         }}
-        navigateTo={nextRoute}
       />
     </>
   );

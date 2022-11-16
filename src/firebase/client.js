@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref, push, set, get, child } from "firebase/database"; //import getterFunction of database service
+import { getDatabase, ref, push, set, get, child, increment } from "firebase/database"; //import getterFunction of database service
 import firebaseConfig from "./config.js";
 
 class Client {
@@ -33,10 +33,10 @@ class Client {
     return set(newAnswerRef, data);
   }
 
-  postUser(data) {
-    const userListRef = ref(this.db, "users");
-    const newUserRef = push(userListRef);
-    return set(newUserRef, data);
+  postUser(userId) {
+    return set(ref(this.db, 'users/' + userId), {
+      numberOfVisits: 1,
+    });
   }
 
   userDoesExist(userId) {
@@ -54,10 +54,21 @@ class Client {
     });
   }
 
+  incrementNumberOfVisits(userId) {
+    const db = getDatabase();
+    return set(ref(db, 'users/' + userId), {
+      numberOfVisits: increment(1),
+    });
+  }
+
   getNumberOfVisits(userId) {
-    const answerListRef = ref(this.db, "answersLogin");
-    console.log(answerListRef)
-    return 3; //TODO add logic
+    const db = getDatabase();
+    return get(ref(db, 'users/' + userId)).then(snapshot => {
+      if (snapshot.exists() && snapshot.val()) {
+        return snapshot.val().numberOfVisits;
+      }
+      return undefined
+    });
   }
 
   logVisit(userId) {

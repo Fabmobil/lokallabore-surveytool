@@ -23,20 +23,10 @@ function ButtonNext({
       style={style}
       onClick={() => {
         if (disabled) return;
-        try {
-          //if onClick is Promise/thenable
-          onClick()
-            .then(() => {
-              navigate(to);
-            })
-            .catch(() => {
-              alert("Ein Problem ist aufgetreten");
-              return;
-            });
-        } catch {
-          //if its not a Promise
-          onClick();
+        if (to) {
           navigate(to);
+        } else {
+          onClick()
         }
       }}
     >

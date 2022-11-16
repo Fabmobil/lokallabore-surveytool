@@ -1,14 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import WeiterButton from "../../components/WeiterButton";
 import TextInput from "../../components/TextInput";
 import RobiGif from "../../components/RobiGif";
 import RobiFlameGif from "../../assets/robi-gifs/Robi_flamme-min.gif";
 import SURVEY_LOGIN_DRITTERBESUCH from "../../constants/survey-login-dritterbesuch";
-import { useState, useEffect } from "react";
 
-
-function isThirdVisit(nVisits) {
-  if (!nVisits) return false
-  return nVisits % 3 === 0;
+function isThirdVisit(globalData) {
+  const numberOfVisits = globalData.numberOfVisits;
+  console.log(numberOfVisits);
+  if (!numberOfVisits) return false
+  return (numberOfVisits + 1) % 3 === 0; //current one = +1 because not yet submitted
 }
 
 const firstRouteThirdVisit =
@@ -17,14 +18,10 @@ const firstRouteThirdVisit =
   "/" +
   SURVEY_LOGIN_DRITTERBESUCH.surveyItems[0].questionId;
 
-function Screen({ onSubmit, data, nextRoute, onFinalSubmit, firebaseClient }) {
-  const [numberVisits, setNumberVisits] = useState(false);
-
-  useEffect(() => {
-    const nVisits = firebaseClient.getNumberOfVisits('alexa05041987')
-    setNumberVisits(nVisits);
-  }, []);
-
+function Screen({ onSubmit, data, nextRoute, onFinalSubmit, globalData }) {
+  const isThird = isThirdVisit(globalData);
+  const navigate = useNavigate();
+  console.log(isThird);
   return (
     <>
       <p>Hast du Verbesserungswünsche? </p>
@@ -34,10 +31,9 @@ function Screen({ onSubmit, data, nextRoute, onFinalSubmit, firebaseClient }) {
       </div>
 
       <WeiterButton
-        text={!isThirdVisit(numberVisits) ? "Und fertig!" : ""}
-        disabled={numberVisits == false}
-        onClick={isThirdVisit(numberVisits) ? () => { } : onFinalSubmit}
-        navigateTo={isThirdVisit(numberVisits) ? firstRouteThirdVisit : nextRoute}
+        text={!isThird ? "Und fertig!" : ""}
+        onClick={isThird ? () => { } : () => { onFinalSubmit().then(() => { navigate(nextRoute) }) }}
+        navigateTo={isThird ? firstRouteThirdVisit : undefined}
       />
     </>
   );

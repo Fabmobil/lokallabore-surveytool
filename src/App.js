@@ -97,7 +97,7 @@ class App extends React.Component {
       date: new Date().toLocaleString(),
     };
     console.log("submitted data", data);
-    this.firebaseClient
+    return this.firebaseClient
       .postAnswersLogin(data)
       .catch((err) => alert("Etwas ist schief gelaufen.."));
   }
@@ -108,14 +108,14 @@ class App extends React.Component {
 
     return this.firebaseClient.userDoesExist(userID).then((doesExist) => {
       if (doesExist) {
-        console.log("Does exist!!!")
         alert(
           "Dieser Nickname mit diesem Geburtsdatum existiert bereits, bitte denk dir einen anderen Nicknamen aus!"
         );
         throw Error();
       } else {
         this.firebaseClient
-          .postUser(userID)
+          .postUser(userID);
+        this.logAnswerRegistrierung('userID', userID)
       }
     });
   }
@@ -141,8 +141,10 @@ class App extends React.Component {
   }
 
   onFinalSubmitLogin() {
-    this.submitAllAnswersLogin();
-    this.resetSurveyData();
+    console.log("ofsli")
+    return this.submitAllAnswersLogin()
+      .then(() => { this.resetSurveyData(); console.log("reset!") })
+      .then(() => { this.firebaseClient.incrementNumberOfVisits(this.state.surveyAnswersLogin.userID) });
   }
 
   getNextRoute(schema, i) {
@@ -150,6 +152,11 @@ class App extends React.Component {
       return "/" + schema.baseUrl + "/" + schema.surveyItems[i + 1].questionId;
     }
     return "/";
+  }
+
+  saveNumberOfVisits(userId) {
+    this.firebaseClient.getNumberOfVisits(userId)
+      .then((number) => { this.logAnswerLogin("calculatedNumberOfVisits", number) })
   }
 
   render() {
@@ -189,9 +196,7 @@ class App extends React.Component {
                     }}
                     onNicknameSubmit={() => this.createNewUser()}
                     onFinalSubmit={
-                      item.isFinal
-                        ? () => this.onFinalSubmitRegistrierung()
-                        : () => { }
+                      () => this.onFinalSubmitRegistrierung()
                     }
                     onLogout={() => this.resetSurveyData()}
 
@@ -212,11 +217,12 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
                     globalData={{
-                      nickname:
-                        this.getValueOrNone(this.state.surveyAnswersLogin, "anmeldung", "nickname")
+                      nickname: this.getValueOrNone(this.state.surveyAnswersLogin, "anmeldung", "nickname"),
+                      numberOfVisits: this.state.surveyAnswersLogin['calculatedNumberOfVisits']
                     }}
+                    onLogin={(userId) => { this.logAnswerLogin('userID', userId); this.saveNumberOfVisits(userId); }}
                     onFinalSubmit={
-                      item.isFinal ? () => this.onFinalSubmitLogin() : () => { }
+                      () => this.onFinalSubmitLogin()
                     }
                     firebaseClient={this.firebaseClient}
                   ></item.screenComponent>
@@ -235,8 +241,11 @@ class App extends React.Component {
                       this.logAnswerLogin(item.questionId, data);
                     }}
                     data={this.state.surveyAnswersLogin[item.questionId]}
+                    globalData={{
+                      nickname: this.getValueOrNone(this.state.surveyAnswersLogin, "anmeldung", "nickname")
+                    }}
                     onFinalSubmit={
-                      item.isFinal ? () => this.onFinalSubmitLogin() : () => { }
+                      () => this.onFinalSubmitLogin()
                     }
                   ></item.screenComponent>
                 }
@@ -255,7 +264,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersGuest[item.questionId]}
                     onFinalSubmit={
-                      item.isFinal ? () => this.onFinalSubmitGuest() : () => { }
+                      this.onFinalSubmitGuest
                     }
                   ></item.screenComponent>
                 }
