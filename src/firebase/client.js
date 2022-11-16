@@ -40,34 +40,26 @@ class Client {
   }
 
   userDoesExist(userId) {
-    return get(child(this.dbRef, `users`)).then((snapshot) => {
-      if (!userId) throw Error("No userID given");
-      if (snapshot.exists()) {
-        try {
-          return Object.values(snapshot.val()).includes(userId);
-        } catch {
-          throw Error;
-        }
-      } else {
-        throw Error;
+    return get(ref(this.db, 'users/' + userId)).then(snapshot => {
+      if (snapshot.exists() && snapshot.val()) {
+        return true;
       }
+      return false;
     });
   }
 
   incrementNumberOfVisits(userId) {
-    const db = getDatabase();
-    return set(ref(db, 'users/' + userId), {
+    return set(ref(this.db, 'users/' + userId), {
       numberOfVisits: increment(1),
     });
   }
 
   getNumberOfVisits(userId) {
-    const db = getDatabase();
-    return get(ref(db, 'users/' + userId)).then(snapshot => {
+    return get(ref(this.db, 'users/' + userId)).then(snapshot => {
       if (snapshot.exists() && snapshot.val()) {
         return snapshot.val().numberOfVisits;
       }
-      return undefined
+      return undefined;
     });
   }
 

@@ -24,9 +24,10 @@ function ButtonNext({
       onClick={() => {
         if (disabled) return;
         if (to) {
+          onClick();
           navigate(to);
         } else {
-          onClick()
+          onClick();
         }
       }}
     >
