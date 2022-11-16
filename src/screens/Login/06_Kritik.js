@@ -7,7 +7,6 @@ import SURVEY_LOGIN_DRITTERBESUCH from "../../constants/survey-login-dritterbesu
 
 function isThirdVisit(globalData) {
   const numberOfVisits = globalData.numberOfVisits;
-  console.log(numberOfVisits);
   if (!numberOfVisits) return false
   return (numberOfVisits + 1) % 3 === 0; //current one = +1 because not yet submitted
 }
@@ -21,7 +20,6 @@ const firstRouteThirdVisit =
 function Screen({ onSubmit, data, nextRoute, onFinalSubmit, globalData }) {
   const isThird = isThirdVisit(globalData);
   const navigate = useNavigate();
-  console.log(isThird);
   return (
     <>
       <p>Hast du Verbesserungswünsche? </p>
