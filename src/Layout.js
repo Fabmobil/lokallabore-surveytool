@@ -1,7 +1,6 @@
 import { Outlet, Link } from "react-router-dom";
 import React from "react";
 import { ReactComponent as Logo } from "./assets/logo.svg";
-
 function Layout({ onLogoClick = () => { } }) {
   return (
     <div className="h-screen bg-orange">
@@ -9,11 +8,7 @@ function Layout({ onLogoClick = () => { } }) {
         <Link
           to="/"
           className="mx-auto"
-          onClick={(e) => {
-            window.confirm("Bist du sicher, dass du von vorn starten möchtest?")
-              ? onLogoClick()
-              : e.preventDefault();
-          }}
+          onClick={onLogoClick}
         >
           <Logo />
         </Link>

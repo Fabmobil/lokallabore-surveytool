@@ -8,6 +8,7 @@ import SURVEY_LOGIN from "./constants/survey-login";
 import SURVEY_LOGIN_DRITTERBESUCH from "./constants/survey-login-dritterbesuch";
 import SURVEY_GUEST from "./constants/survey-guest";
 import FirebaseClient from "./firebase/client";
+import AlertLayer from "./AlertLayer";
 
 class App extends React.Component {
   constructor(props) {
@@ -17,6 +18,7 @@ class App extends React.Component {
       surveyAnswersRegistrierung: {},
       surveyAnswersLogin: {},
       surveyAnswersGuest: {},
+      error: 'ABANDON',
     };
   }
 
@@ -32,6 +34,7 @@ class App extends React.Component {
     this.setState({
       surveyAnswersRegistrierung: {},
       surveyAnswersLogin: {},
+      surveyAnswersGuest: {},
     });
   }
 
@@ -102,15 +105,21 @@ class App extends React.Component {
       .catch((err) => alert("Etwas ist schief gelaufen.."));
   }
 
+  reportError(errorCode) {
+    this.setState({ ...this.state, error: errorCode })
+  }
+
+  clearError() {
+    this.setState({ ...this.state, error: null })
+  }
+
   createNewUser() {
     const { nickname, geburtstag } = this.state.surveyAnswersRegistrierung;
     const userID = this.firebaseClient.createUserID(nickname, geburtstag);
 
     return this.firebaseClient.userDoesExist(userID).then((doesExist) => {
       if (doesExist) {
-        alert(
-          "Dieser Nickname mit diesem Geburtsdatum existiert bereits, bitte denk dir einen anderen Nicknamen aus!"
-        );
+        this.reportError('USER_EXISTS');
         throw Error();
       } else {
         this.firebaseClient
@@ -160,7 +169,8 @@ class App extends React.Component {
   }
 
   render() {
-    return (
+    return (<>
+      <AlertLayer error={this.state.error} onCloseClick={() => this.clearError()} onAbandonConfirmClick={() => { this.resetSurveyData(); window.location = "/" }} />
       <BrowserRouter>
         <Routes>
           <Route path="" element={<Layout2 />}>
@@ -170,8 +180,9 @@ class App extends React.Component {
             path="/"
             element={
               <Layout
-                onLogoClick={() => {
-                  this.resetSurveyData();
+                onLogoClick={(e) => {
+                  e.preventDefault();
+                  this.reportError('ABANDON')
                 }}
               />
             }
@@ -225,6 +236,7 @@ class App extends React.Component {
                       () => this.onFinalSubmitLogin()
                     }
                     firebaseClient={this.firebaseClient}
+                    onError={(errorCode) => this.reportError(errorCode)}
                   ></item.screenComponent>
                 }
               />
@@ -272,7 +284,7 @@ class App extends React.Component {
             ))}
           </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter></>
     );
   }
 }

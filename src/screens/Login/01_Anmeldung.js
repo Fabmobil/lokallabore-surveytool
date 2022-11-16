@@ -3,7 +3,7 @@ import VerticalGrid from "../../components/VerticalGrid";
 import TextInput from "../../components/TextInput";
 import { useNavigate } from "react-router";
 
-function Screen({ onSubmit, data, nextRoute, firebaseClient, onLogin }) {
+function Screen({ onSubmit, data, nextRoute, firebaseClient, onLogin, onError = () => { } }) {
   const navigate = useNavigate();
   function hasUserAnswered() {
     if (!data) return false;
@@ -43,7 +43,7 @@ function Screen({ onSubmit, data, nextRoute, firebaseClient, onLogin }) {
           const userID = firebaseClient.createUserID(data.nickname, { day: data.day, month: data.month, year: data.year });
           return firebaseClient.userDoesExist(userID).then((doesExist) => {
             if (!doesExist) {
-              alert("Dieser Nickname mit diesem Geburtsdatum existiert nicht!");
+              onError('USER_EXISTS_NOT')
               throw Error();
             }
             onLogin(userID);

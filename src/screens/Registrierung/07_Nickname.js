@@ -20,6 +20,8 @@ function Screen({ onSubmit, data, nextRoute, onNicknameSubmit }) {
       </p>
       <div className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
+        <div className="text-xs mt-6">
+          Nur Kleinbuchstaben! Keine Zahlen / Sonderzeichen! Mindestens 2 Zeichen! Maximal 15 Zeichen! </div>
       </div>
       <WeiterButton
         disabled={!hasUserAnswered()}
