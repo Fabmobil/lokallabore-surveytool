@@ -16,16 +16,17 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Möchtest du dich längerfristig im Lokallabor engagieren? </p>
-      <VerticalGrid>
-        <SingleChoice
-          answer={data}
-          options={ANSWER_OPTIONS}
-          onSelect={(answer) => {
-            onSubmit(answer);
-            setTimeout(() => navigate(nextRoute), 500);
-          }}
-        />
-      </VerticalGrid>
+      <div className="overflow-auto">
+        <VerticalGrid>
+          <SingleChoice
+            answer={data}
+            options={ANSWER_OPTIONS}
+            onSelect={(answer) => {
+              onSubmit(answer);
+              setTimeout(() => navigate(nextRoute), 500);
+            }}
+          />
+        </VerticalGrid></div>
     </>
   );
 }

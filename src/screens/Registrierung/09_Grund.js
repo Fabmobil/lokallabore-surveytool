@@ -21,16 +21,15 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Warum bist du heute hier?</p>
-      <div className="flex flex-grow flex-col justify-center">
-        <VerticalGrid>
-          <MultipleChoiceTool
-            options={ANSWER_OPTIONS}
-            onChange={onSubmit}
-            data={data}
-          />
-        </VerticalGrid>
-      </div>
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
+
+      <VerticalGrid className="flex-grow overflow-auto">
+        <MultipleChoiceTool
+          options={ANSWER_OPTIONS}
+          onChange={onSubmit}
+          data={data}
+        />
+        <WeiterButton disabled={!hasUserAnswered()} style={{ position: "relative", bottom: "auto", right: "auto" }} navigateTo={nextRoute} />
+      </VerticalGrid>
     </>
   );
 }

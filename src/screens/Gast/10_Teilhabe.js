@@ -16,7 +16,7 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Möchtest du dich längerfristig im Lokallabor engagieren? </p>
-      <div className="vertical-center">
+      <div className="flex-grow overflow-auto">
         <VerticalGrid>
           <SingleChoice
             answer={data}

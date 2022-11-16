@@ -2,7 +2,7 @@ import ButtonNext from "../../components/ButtonNext";
 
 function Screen({ nextRoute }) {
   return (
-    <div>
+    <div className="overflow-auto">
       <p>
         <span className="font-bold"> Hey! Willkommen in den Lokallaboren! </span>
         <br />
@@ -15,9 +15,10 @@ function Screen({ nextRoute }) {
         uns damit sehr weiterhilfst einzuschätzen, wie nice und gigantisch das
         Lokallabore- Netzwerk noch werden kann! 🔥🔥🔥{" "}
       </p>
-      <ButtonNext to={nextRoute} className="fixed bottom-14 right-6">
+      <ButtonNext inner to={nextRoute}>
         Alles klar!
       </ButtonNext>
+
     </div>
   );
 }

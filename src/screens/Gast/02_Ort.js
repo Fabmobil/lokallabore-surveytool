@@ -7,9 +7,9 @@ const ANSWER_OPTIONS = ["Annaberg-Buchholz", "Löbau", "Weißwasser", "Plauen"];
 function Screen({ onSubmit, data, nextRoute }) {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col flex-grow">
+    <>
       <p>In welchem Lokallabor bist du gerade?</p>
-      <div className="vertical-center">
+      <div className="flex-grow overflow-auto">
         <VerticalGrid>
           <SingleChoice
             answer={data}
@@ -21,7 +21,7 @@ function Screen({ onSubmit, data, nextRoute }) {
           />
         </VerticalGrid>
       </div>
-    </div>
+    </>
   );
 }
 

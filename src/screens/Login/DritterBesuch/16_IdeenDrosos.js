@@ -13,21 +13,19 @@ const ANSWER_OPTIONS = [
 function Screen({ onSubmit, data, nextRoute }) {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col flex-grow">
+    <>
       <p>Du kommst zu neuen Ideen...</p>
-      <div className="vertical-center">
-        <VerticalGrid>
-          <SingleChoice
-            answer={data}
-            options={ANSWER_OPTIONS}
-            onSelect={(answer) => {
-              onSubmit(answer);
-              setTimeout(() => navigate(nextRoute), 500);
-            }}
-          />
-        </VerticalGrid>
-      </div>
-    </div>
+      <VerticalGrid className="flex-grow overflow-auto">
+        <SingleChoice
+          answer={data}
+          options={ANSWER_OPTIONS}
+          onSelect={(answer) => {
+            onSubmit(answer);
+            setTimeout(() => navigate(nextRoute), 500);
+          }}
+        />
+      </VerticalGrid>
+    </>
   );
 }
 

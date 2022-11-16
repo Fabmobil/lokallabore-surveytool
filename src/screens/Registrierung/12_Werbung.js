@@ -21,14 +21,15 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Wie hast du vom Lokallabor gehört?</p>
-      <VerticalGrid>
-        <MultipleChoiceTool
-          options={ANSWER_OPTIONS}
-          onChange={onSubmit}
-          data={data}
-        />
-      </VerticalGrid>
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
+      <div className="overflow-auto">
+        <VerticalGrid>
+          <MultipleChoiceTool
+            options={ANSWER_OPTIONS}
+            onChange={onSubmit}
+            data={data}
+          />
+          <WeiterButton inner={true} disabled={!hasUserAnswered()} navigateTo={nextRoute} />
+        </VerticalGrid></div>
     </>
   );
 }

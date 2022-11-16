@@ -21,17 +21,17 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Warum bist du heute hier?</p>
-      <div className="vertical-center">
+      <div className="flex-grow overflow-auto">
         <VerticalGrid>
           <MultipleChoiceTool
             options={ANSWER_OPTIONS}
             onChange={onSubmit}
             data={data}
           />
+          <WeiterButton inner disabled={!hasUserAnswered()} navigateTo={nextRoute} />
         </VerticalGrid>
       </div>
 
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
   );
 }

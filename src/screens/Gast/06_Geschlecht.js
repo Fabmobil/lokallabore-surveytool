@@ -26,7 +26,7 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Was ist dein Geschlecht?</p>
-      <div className="vertical-center">
+      <div className="flex-grow overflow-auto">
         <VerticalGrid>
           <MultipleChoiceTool
             options={ANSWER_OPTIONS}
@@ -37,10 +37,11 @@ function Screen({ onSubmit, data, nextRoute }) {
             value={(data && data.freeValue) || ""}
             onChange={(val) => onSubmit(changeFreeValue(data, val))}
           />
+          <WeiterButton inner disabled={!hasUserAnswered()} navigateTo={nextRoute} />
         </VerticalGrid>
+
       </div>
 
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
   );
 }

@@ -264,7 +264,7 @@ class App extends React.Component {
                     }}
                     data={this.state.surveyAnswersGuest[item.questionId]}
                     onFinalSubmit={
-                      this.onFinalSubmitGuest
+                      () => this.onFinalSubmitGuest()
                     }
                   ></item.screenComponent>
                 }

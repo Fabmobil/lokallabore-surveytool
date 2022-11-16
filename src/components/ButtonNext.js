@@ -11,13 +11,17 @@ function ButtonNext({
   className,
   style,
   normalPositioning,
+  inner
 }) {
   const navigate = useNavigate();
+  console.log(inner)
   return (
     <Button
       className={[
         className,
-        { "fixed bottom-14 right-6 w-44 md:w-64": !normalPositioning },
+        { "w-44 md:w-64": !normalPositioning },
+        { "fixed bottom-14 right-6": !normalPositioning && !inner },
+        { "ml-auto": inner }
       ]}
       disabled={disabled}
       style={style}
