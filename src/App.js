@@ -123,8 +123,13 @@ class App extends React.Component {
         throw Error();
       } else {
         this.firebaseClient
-          .postUser(userID);
-        this.logAnswerRegistrierung('userID', userID)
+          .postUser(userID)
+          .then(() => { this.logAnswerRegistrierung('userID', userID) })
+          .catch(() => {
+            if (window.confirm("Oh no! Ein Fehler ist aufgetreten.")) {
+              window.location = "/"
+            }
+          });
       }
     });
   }
@@ -150,7 +155,6 @@ class App extends React.Component {
   }
 
   onFinalSubmitLogin() {
-    console.log("ofsli")
     return this.submitAllAnswersLogin()
       .then(() => { this.resetSurveyData(); console.log("reset!") })
       .then(() => { this.firebaseClient.incrementNumberOfVisits(this.state.surveyAnswersLogin.userID) });
@@ -169,6 +173,7 @@ class App extends React.Component {
   }
 
   render() {
+
     return (<>
       <AlertLayer error={this.state.error} onCloseClick={() => this.clearError()} onAbandonConfirmClick={() => { this.resetSurveyData(); window.location = "/" }} />
       <BrowserRouter>

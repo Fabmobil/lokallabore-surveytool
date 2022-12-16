@@ -47,7 +47,7 @@ function Screen({ onSubmit, data, nextRoute, firebaseClient, onLogin, onError = 
               throw Error();
             }
             onLogin(userID);
-          }).then(() => { navigate(nextRoute) });
+          }).then(() => { navigate(nextRoute) }).catch(err => console.log("Error", err));
         }}
       />
     </>
