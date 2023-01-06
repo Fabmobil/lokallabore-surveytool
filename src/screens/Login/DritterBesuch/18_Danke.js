@@ -1,5 +1,5 @@
 import ButtonNext from "../../../components/ButtonNext";
-import emojiHappy from "../../../assets/happy.png";
+import RobiGif from "../../components/RobiGif";
 
 function Screen({ globalData }) {
   return (
@@ -8,7 +8,7 @@ function Screen({ globalData }) {
         Danke <span className="font-bold">{globalData.nickname}</span>! <br />
         Viel Spaß im Lokallabor!
       </p>
-      <img alt="" src={emojiHappy} className="w-12 ml-auto mt-6" />
+      <RobiGif style={{ transform: "rotate(2.2deg)", width: 331 }} />
       <ButtonNext to="/">Log Out</ButtonNext>
     </>
   );
