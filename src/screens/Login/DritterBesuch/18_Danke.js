@@ -1,5 +1,5 @@
 import ButtonNext from "../../../components/ButtonNext";
-import RobiGif from "../../components/RobiGif";
+import RobiGif from "../../../components/RobiGif";
 
 function Screen({ globalData }) {
   return (
