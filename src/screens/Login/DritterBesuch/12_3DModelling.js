@@ -14,6 +14,9 @@ function Screen({ onSubmit, data, nextRoute }) {
         onChange={onSubmit}
         value={isNaN(data) ? 0 : data}
         imgTop={imageTop}
+        imgBottom={
+          "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=oo"
+        }
       />
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
