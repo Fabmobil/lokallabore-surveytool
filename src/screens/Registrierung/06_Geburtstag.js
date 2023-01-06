@@ -5,6 +5,9 @@ import TextInput from "../../components/TextInput";
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
     if (!data) return false;
+    if (!data.day.match(/^[0-9]{2}$/)) return false;
+    if (!data.month.match(/^[0-9]{2}$/)) return false;
+    if (!data.year.match(/^[0-9]{4}$/)) return false;
     return !!data.day && !!data.month && !!data.year;
   }
   return (
@@ -14,22 +17,25 @@ function Screen({ onSubmit, data, nextRoute }) {
         <VerticalGrid>
           {/*Tag, Monat, Jahr */}
           <TextInput
-            placeholder="Tag"
+            placeholder="TT"
             pattern="[0-9]{2}"
+            minLength={2}
             maxLength={2}
             value={data && data.day ? data.day : ""}
             onChange={(val) => onSubmit({ ...data, day: val })}
           />
           <TextInput
-            placeholder="Monat"
+            placeholder="MM"
             pattern="[0-9]{2}"
+            minLength={2}
             maxLength={2}
             value={data && data.month ? data.month : ""}
             onChange={(val) => onSubmit({ ...data, month: val })}
           />
           <TextInput
-            placeholder="Jahr"
+            placeholder="JJJJ"
             pattern="[0-9]{4}"
+            minLength={4}
             maxLength={4}
             value={data && data.year ? data.year : ""}
             onChange={(val) => onSubmit({ ...data, year: val })}
