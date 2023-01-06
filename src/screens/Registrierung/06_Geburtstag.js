@@ -5,10 +5,12 @@ import TextInput from "../../components/TextInput";
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
     if (!data) return false;
+    if (!("day" in data) || !("month" in data) || !("year" in data))
+      return false;
     if (!data.day.match(/^[0-9]{2}$/)) return false;
     if (!data.month.match(/^[0-9]{2}$/)) return false;
     if (!data.year.match(/^[0-9]{4}$/)) return false;
-    return !!data.day && !!data.month && !!data.year;
+    return true;
   }
   return (
     <>

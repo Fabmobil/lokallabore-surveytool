@@ -14,10 +14,17 @@ function Screen({
   const navigate = useNavigate();
   function hasUserAnswered() {
     if (!data) return false;
+    if (
+      !("day" in data) ||
+      !("month" in data) ||
+      !("year" in data) ||
+      !("nickname" in data)
+    )
+      return false;
     if (!data.day.match(/^[0-9]{2}$/)) return false;
     if (!data.month.match(/^[0-9]{2}$/)) return false;
     if (!data.year.match(/^[0-9]{4}$/)) return false;
-    return !!data.nickname && !!data.day && !!data.month && !!data.year;
+    return true;
   }
   return (
     <>
@@ -26,6 +33,7 @@ function Screen({
         <VerticalGrid>
           <TextInput
             placeholder="Nickname"
+            maxLength={15}
             value={data && data.nickname ? data.nickname : ""}
             onChange={(val) => onSubmit({ ...data, nickname: val })}
           />
