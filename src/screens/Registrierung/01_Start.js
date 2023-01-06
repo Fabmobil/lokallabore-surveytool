@@ -2,10 +2,12 @@ import ButtonNext from "../../components/ButtonNext";
 
 function Screen({ nextRoute }) {
   return (
-
-    <div className="overflow-auto">
-      <p >
-        <span className="font-bold"> Hey! Willkommen in den Lokallaboren! </span>
+    <div>
+      <p>
+        <span className="font-bold">
+          {" "}
+          Hey! Willkommen in den Lokallaboren!{" "}
+        </span>
         <br />
         <br /> Die Lokallabore sind mittlerweile feste Orte und wir würden
         natürlich noch gerne wissen, wie du mit dem Lokallabore-Projekt so
@@ -15,7 +17,10 @@ function Screen({ nextRoute }) {
         Deshalb gibts hier eine schicke App mit Fragen, die du beantwortest und
         uns damit sehr weiterhilfst einzuschätzen, wie nice und gigantisch das
         Lokallabore- Netzwerk noch werden kann! 🔥🔥🔥{" "}
-      </p><ButtonNext inner to={nextRoute}>Alles klar!</ButtonNext>
+      </p>
+      <ButtonNext inner to={nextRoute}>
+        Alles klar!
+      </ButtonNext>
     </div>
   );
 }
