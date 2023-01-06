@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Layout2 from "./Layout2";
 import StartScreen from "./screens/0_Start";
+import DataExportScreen from "./screens/Data-Export";
 import SURVEY_REGISTRIERUNG from "./constants/survey-registrierung";
 import SURVEY_LOGIN from "./constants/survey-login";
 import SURVEY_LOGIN_DRITTERBESUCH from "./constants/survey-login-dritterbesuch";
@@ -312,6 +313,7 @@ class App extends React.Component {
                 />
               ))}
             </Route>
+            <Route path="/data-export" element={<DataExportScreen />} />
           </Routes>
         </BrowserRouter>
       </>
