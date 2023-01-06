@@ -26,22 +26,23 @@ function Screen({ onSubmit, data, nextRoute }) {
   return (
     <>
       <p>Was ist dein Geschlecht?</p>
-      <div className="flex-grow overflow-auto">
-        <VerticalGrid>
-          <MultipleChoiceTool
-            options={ANSWER_OPTIONS}
-            onChange={(vals) => onSubmit(changePredefinedValues(data, vals))}
-            data={(data && data.predefinedValues) || null}
-          />
-          <TextInput
-            value={(data && data.freeValue) || ""}
-            onChange={(val) => onSubmit(changeFreeValue(data, val))}
-          />
-          <WeiterButton inner disabled={!hasUserAnswered()} navigateTo={nextRoute} />
-        </VerticalGrid>
 
-      </div>
-
+      <VerticalGrid className="flex-grow overflow-auto">
+        <MultipleChoiceTool
+          options={ANSWER_OPTIONS}
+          onChange={(vals) => onSubmit(changePredefinedValues(data, vals))}
+          data={(data && data.predefinedValues) || null}
+        />
+        <TextInput
+          value={(data && data.freeValue) || ""}
+          onChange={(val) => onSubmit(changeFreeValue(data, val))}
+        />
+        <WeiterButton
+          inner
+          disabled={!hasUserAnswered()}
+          navigateTo={nextRoute}
+        />
+      </VerticalGrid>
     </>
   );
 }
