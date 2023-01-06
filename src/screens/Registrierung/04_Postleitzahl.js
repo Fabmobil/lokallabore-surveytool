@@ -2,17 +2,20 @@ import WeiterButton from "../../components/WeiterButton";
 import TextInput from "../../components/TextInput";
 
 function Screen({ onSubmit, data, nextRoute }) {
-  function hasUserAnswered() {
-    return !!data && data.length === 5 && parseInt(data) > 0;
-  }
+  const hasUserAnswered = () => {
+    if (!data) return false;
+    if (!data.match(/^[0-9]{5}$/)) return false;
+    return true;
+  };
 
   return (
     <>
       <p>Wie lautet die Postleitzahl deines Heimatortes?</p>
       <div className="vertical-center">
         <TextInput
-          maxLength={5}
-          pattern="[0-9]{5}"
+          minLength="5"
+          maxLength="5"
+          pattern={/[0-9]{5}/}
           value={data}
           onChange={(val) => onSubmit(val)}
         />

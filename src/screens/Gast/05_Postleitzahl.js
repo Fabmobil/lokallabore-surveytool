@@ -7,9 +7,11 @@ import RobiLongarmTouchGif from "../../assets/robi-gifs/Robi_longarmtouch-min.gi
 const robiWidth = 332;
 
 function Screen({ onSubmit, data, nextRoute }) {
-  function hasUserAnswered() {
-    return !!data;
-  }
+  const hasUserAnswered = () => {
+    if (!data) return false;
+    if (!data.match(/^[0-9]{5}$/)) return false;
+    return true;
+  };
 
   const containerRef = useRef(null);
   const [robiY, setRobiY] = useState(0);
@@ -44,7 +46,13 @@ function Screen({ onSubmit, data, nextRoute }) {
     <>
       <p>Wie lautet die Postleitzahl deines Heimatortes?</p>
       <div ref={containerRef} className="vertical-center">
-        <TextInput value={data} onChange={(val) => onSubmit(val)} />
+        <TextInput
+          value={data}
+          minLength="5"
+          maxLength="5"
+          pattern={/[0-9]{5}/}
+          onChange={(val) => onSubmit(val)}
+        />
       </div>
       <RobiGif
         className="fixed"
