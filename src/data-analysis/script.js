@@ -64,6 +64,9 @@ function doData(data) {
   sortByDate(answersRegistrierung);
   sortByDate(answersLogin);
   sortByDate(answersGuest);
+  convertUTCDatesToSaxonyTime(answersRegistrierung);
+  convertUTCDatesToSaxonyTime(answersLogin);
+  convertUTCDatesToSaxonyTime(answersGuest);
   console.log("Number of users: ", users.length);
   console.log("--------- Analytics Answers/Registrierung --------- ");
   analyzeAnswerSet(answersRegistrierung);
@@ -71,9 +74,7 @@ function doData(data) {
   analyzeAnswerSet(answersLogin);
   console.log("--------- Analytics Answers/Guest --------- ");
   analyzeAnswerSet(answersGuest);
-  convertUTCDatesToSaxonyTime(answersRegistrierung);
-  convertUTCDatesToSaxonyTime(answersLogin);
-  convertUTCDatesToSaxonyTime(answersGuest);
+
   return {
     dataRegistrierung: answersRegistrierung,
     dataLogin: answersLogin,
