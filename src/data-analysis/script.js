@@ -1,3 +1,5 @@
+import { DateTime } from "luxon";
+
 const groupBy = (array, key) => {
   return array.reduce((result, currentValue) => {
     (result[currentValue[key]] = result[currentValue[key]] || []).push(
@@ -38,7 +40,22 @@ function sortByDate(arr) {
   );
 }
 
+function convertUTCDatesToSaxonyTime(arr) {
+  arr.forEach((el) => {
+    el.date = DateTime.fromISO(el.date, {
+      zone: "Europe/Paris",
+    });
+  });
+}
+
 function doData(data) {
+  //Time test
+  const utcTime = "2023-01-06T22:39:51.720Z";
+  const saxonyTime = DateTime.fromISO(utcTime, {
+    zone: "Europe/Paris",
+  });
+  console.log(saxonyTime.toISO());
+
   console.log("... Lokallabore Data Analysis... ");
   const users = Object.keys(data["users"]);
   const answersRegistrierung = Object.values(data["answersRegistrierung"]);
@@ -54,6 +71,9 @@ function doData(data) {
   analyzeAnswerSet(answersLogin);
   console.log("--------- Analytics Answers/Guest --------- ");
   analyzeAnswerSet(answersGuest);
+  convertUTCDatesToSaxonyTime(answersRegistrierung);
+  convertUTCDatesToSaxonyTime(answersLogin);
+  convertUTCDatesToSaxonyTime(answersGuest);
   return {
     dataRegistrierung: answersRegistrierung,
     dataLogin: answersLogin,
