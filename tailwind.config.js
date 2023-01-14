@@ -7,6 +7,10 @@ module.exports = {
         orange: "#FF6700",
         gray: "#DADADA",
       },
+      screens: {
+        "md-h": { raw: "(min-height: 400px)" },
+        // => @media (min-height: 400px) { ... }
+      },
     },
   },
   plugins: [],
