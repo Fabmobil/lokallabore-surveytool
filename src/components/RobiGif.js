@@ -7,7 +7,7 @@ function RobiGif({ src, style, className }) {
       className={classNames("RobiGif pointer-events-none", className)}
       style={style}
     >
-      <img src={src || robiHeartDefaultGif} alt="" />
+      <img src={src || robiHeartDefaultGif} style={{ height: "100%" }} alt="" />
     </div>
   );
 }

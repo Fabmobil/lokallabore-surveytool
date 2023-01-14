@@ -8,8 +8,10 @@ function Screen({ globalData, onLogout }) {
         Danke <span className="font-bold">{globalData.nickname}</span>! <br />
         Viel Spaß im Lokallabor!
       </p>
-      <RobiGif style={{ transform: "rotate(30deg)" }} />
-      <ButtonNext to="/" onClick={onLogout}>Log Out</ButtonNext>
+      <RobiGif className="w-80" style={{ transform: "rotate(20.25deg)" }} />
+      <ButtonNext to="/" onClick={onLogout}>
+        Log Out
+      </ButtonNext>
     </>
   );
 }

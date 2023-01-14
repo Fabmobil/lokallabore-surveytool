@@ -10,7 +10,11 @@ function Screen({ onSubmit, onFinalSubmit, data, nextRoute }) {
       <div className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
-      <RobiGif src={RobiFlameGif} />
+      <RobiGif
+        src={RobiFlameGif}
+        className="fixed h-60 md-h:h-72"
+        style={{ transform: "rotate(30deg)", bottom: 30, left: -20 }}
+      />
       <WeiterButton onClick={onFinalSubmit} navigateTo={nextRoute} />
     </>
   );

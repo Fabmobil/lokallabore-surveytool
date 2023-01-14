@@ -4,7 +4,7 @@ import TextInput from "../../components/TextInput";
 import RobiGif from "../../components/RobiGif";
 import RobiSliderGif from "../../assets/robi-gifs/Robi_slider-min.gif";
 
-const robiWidth = 263;
+const robiWidth = 200;
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {

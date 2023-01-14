@@ -10,7 +10,10 @@ function Screen({ globalData }) {
         <br />
         Dankeschön! Viel Spaß auf der Veranstaltung des Lokallabors!
       </p>
-      <RobiGif />
+      <RobiGif
+        style={{ transform: "rotate(2.2deg)" }}
+        className={"fixed top-48 right-0 w-80"}
+      />
       <ButtonNext to="/">Fertig!</ButtonNext>
     </>
   );

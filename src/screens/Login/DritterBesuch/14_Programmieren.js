@@ -29,7 +29,12 @@ function Screen({ onSubmit, data, nextRoute }) {
       </div>
       <RobiGif
         src={RobiTastaturAgroGif}
-        style={{ transform: "rotate(12.74deg)" }}
+        className={"fixed md-h:h-60 h-36"}
+        style={{
+          transform: "rotate(12.74deg)",
+          bottom: 0,
+          right: 0,
+        }}
       />
     </>
   );

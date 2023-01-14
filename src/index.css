@@ -116,7 +116,7 @@ body {
 @media (max-width: 767px) {
   .vertical-center {
     @apply flex-grow flex flex-col justify-center;
-    padding-bottom: 96px;
+    /* padding-bottom: 96px; */
   }
 }
 

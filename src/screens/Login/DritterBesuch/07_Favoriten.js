@@ -14,9 +14,9 @@ function Screen({ onSubmit, data, nextRoute }) {
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
       <RobiGif
+        className="w-64"
         style={{
           transform: "matrix(-0.96, 0.27, 0.27, 0.96, 0, 0)",
-          height: "10vh",
         }}
       />
 

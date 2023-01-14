@@ -30,7 +30,8 @@ function Screen({ onSubmit, data, nextRoute, onFinalSubmit, globalData }) {
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
         <RobiGif
           src={RobiFlameGif}
-          style={{ transform: "rotate(30deg)", width: "50%" }}
+          className={"w-72"}
+          style={{ transform: "rotate(30deg)" }}
         />
       </div>
 
