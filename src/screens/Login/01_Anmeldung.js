@@ -59,31 +59,32 @@ function Screen({
             value={data && data.year ? data.year : ""}
             onChange={(val) => onSubmit({ ...data, year: val })}
           />
+          <WeiterButton
+            style={{ position: "static" }}
+            disabled={!hasUserAnswered()}
+            onClick={() => {
+              const userID = firebaseClient.createUserID(data.nickname, {
+                day: data.day,
+                month: data.month,
+                year: data.year,
+              });
+              return firebaseClient
+                .userDoesExist(userID)
+                .then((doesExist) => {
+                  if (!doesExist) {
+                    onError("USER_EXISTS_NOT");
+                    throw Error();
+                  }
+                  onLogin(userID);
+                })
+                .then(() => {
+                  navigate(nextRoute);
+                })
+                .catch((err) => console.log("Error", err));
+            }}
+          />
         </VerticalGrid>
       </div>
-      <WeiterButton
-        disabled={!hasUserAnswered()}
-        onClick={() => {
-          const userID = firebaseClient.createUserID(data.nickname, {
-            day: data.day,
-            month: data.month,
-            year: data.year,
-          });
-          return firebaseClient
-            .userDoesExist(userID)
-            .then((doesExist) => {
-              if (!doesExist) {
-                onError("USER_EXISTS_NOT");
-                throw Error();
-              }
-              onLogin(userID);
-            })
-            .then(() => {
-              navigate(nextRoute);
-            })
-            .catch((err) => console.log("Error", err));
-        }}
-      />
     </>
   );
 }

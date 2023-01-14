@@ -42,9 +42,13 @@ function Screen({ onSubmit, data, nextRoute }) {
             value={data && data.year ? data.year : ""}
             onChange={(val) => onSubmit({ ...data, year: val })}
           />
+          <WeiterButton
+            disabled={!hasUserAnswered()}
+            navigateTo={nextRoute}
+            style={{ position: "static" }}
+          />
         </VerticalGrid>
       </div>
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
   );
 }
