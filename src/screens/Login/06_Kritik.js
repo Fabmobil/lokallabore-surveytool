@@ -28,7 +28,10 @@ function Screen({ onSubmit, data, nextRoute, onFinalSubmit, globalData }) {
       <p>Hast du Verbesserungswünsche? </p>
       <div className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
-        <RobiGif src={RobiFlameGif} style={{ transform: "rotate(30deg)" }} />
+        <RobiGif
+          src={RobiFlameGif}
+          style={{ transform: "rotate(30deg)", width: "50%" }}
+        />
       </div>
 
       <WeiterButton

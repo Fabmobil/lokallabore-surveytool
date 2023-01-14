@@ -54,9 +54,12 @@ function Screen({ onSubmit, data, nextRoute }) {
           value={(data && data.freeValue) || ""}
           onChange={(val) => handleFreeValueInput(val)}
         />
+        <WeiterButton
+          inner
+          disabled={!hasUserAnswered()}
+          navigateTo={nextRoute}
+        />
       </VerticalGrid>
-
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>
   );
 }

@@ -5,7 +5,7 @@ function WeiterButton({ disabled, navigateTo, text, style, onClick, inner }) {
     <ButtonNext
       disabled={disabled}
       to={navigateTo}
-      className={"w-44 md:w-64 ml-auto flex-shrink-0"}
+      className={"md:w-64 ml-auto flex-shrink-0"}
       style={style}
       onClick={onClick}
       inner={inner}

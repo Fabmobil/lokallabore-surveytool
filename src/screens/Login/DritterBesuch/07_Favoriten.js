@@ -13,7 +13,12 @@ function Screen({ onSubmit, data, nextRoute }) {
       <div className="vertical-center">
         <TextInput value={data} onChange={(val) => onSubmit(val)} />
       </div>
-      <RobiGif style={{ transform: "matrix(-0.96, 0.27, 0.27, 0.96, 0, 0)" }} />
+      <RobiGif
+        style={{
+          transform: "matrix(-0.96, 0.27, 0.27, 0.96, 0, 0)",
+          height: "10vh",
+        }}
+      />
 
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
     </>

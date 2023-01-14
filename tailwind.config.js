@@ -8,7 +8,7 @@ module.exports = {
         gray: "#DADADA",
       },
       screens: {
-        "md-h": { raw: "(min-height: 400px)" },
+        "md-h": { raw: "(min-height: 650px)" },
         // => @media (min-height: 400px) { ... }
       },
     },
