@@ -11,10 +11,6 @@ function Screen({ onSubmit, data, nextRoute }) {
   const navigate = useNavigate();
 
   function hasUserAnswered() {
-    return !isNaN(data);
-  }
-
-  function hasUserAnswered() {
     return !isNaN(data) || data === ANSWER_OPTION;
   }
 
