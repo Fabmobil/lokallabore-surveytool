@@ -1,13 +1,19 @@
+import { useNavigate } from "react-router-dom";
+import Button from "../../../components/Button";
 import WeiterButton from "../../../components/WeiterButton";
 import Slider from "../../../components/Slider";
 import imageTop from "../../../assets/robo-thumbsup.png";
 import imageBottom from "../../../assets/robo-thumbsdown.png";
+import DoubleButtonRow from "../../../components/DoubleButtonRow";
+
+const ANSWER_OPTION = "Nie probiert";
 
 function Screen({ onSubmit, data, nextRoute }) {
-  function hasUserAnswered() {
-    return !isNaN(data);
-  }
+  const navigate = useNavigate();
 
+  function hasUserAnswered() {
+    return !isNaN(data) || data === ANSWER_OPTION;
+  }
   return (
     <>
       <p>Magst du Mikroelektronik?</p>
@@ -17,7 +23,24 @@ function Screen({ onSubmit, data, nextRoute }) {
         imgTop={imageTop}
         imgBottom={imageBottom}
       />
-      <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
+      <DoubleButtonRow>
+        <Button
+          isActive={data === ANSWER_OPTION}
+          onClick={() => {
+            onSubmit(ANSWER_OPTION);
+            setTimeout(() => navigate(nextRoute), 500);
+          }}
+          className="border-r-0"
+        >
+          Nie probiert
+        </Button>
+        <WeiterButton
+          inner
+          disabled={!hasUserAnswered()}
+          navigateTo={nextRoute}
+          style={{ marginLeft: 0 }}
+        />
+      </DoubleButtonRow>
     </>
   );
 }
