@@ -8,7 +8,10 @@ const robiWidth = 332;
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
-    return !!data;
+    console.log(data);
+    if (!data) return false;
+    if (!data.match(/^[0-9]{1,2}$/)) return false;
+    return true;
   }
 
   const containerRef = useRef(null);
@@ -45,7 +48,12 @@ function Screen({ onSubmit, data, nextRoute }) {
       <p>Wie alt bist du?</p>
       <div className="vertical-center">
         <div ref={containerRef}>
-          <TextInput value={data} onChange={(val) => onSubmit(val)} />
+          <TextInput
+            minLength={1}
+            maxLength={2}
+            value={data}
+            onChange={(val) => onSubmit(val)}
+          />
         </div>
       </div>
       <RobiGif

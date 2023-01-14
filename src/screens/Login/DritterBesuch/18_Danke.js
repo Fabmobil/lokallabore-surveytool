@@ -5,7 +5,7 @@ function Screen({ globalData }) {
   return (
     <>
       <p>
-        Danke <span className="font-bold">{globalData.nickname}</span>! <br />
+        Danke! <br />
         Viel Spaß im Lokallabor!
       </p>
       <RobiGif style={{ transform: "rotate(2.2deg)", width: 331 }} />
