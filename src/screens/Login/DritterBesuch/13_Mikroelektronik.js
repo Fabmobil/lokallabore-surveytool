@@ -5,7 +5,7 @@ import imageBottom from "../../../assets/robo-thumbsdown.png";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
-    return !!data;
+    return !isNaN(data);
   }
 
   return (

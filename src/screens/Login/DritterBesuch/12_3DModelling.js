@@ -4,7 +4,7 @@ import imageTop from "../../../assets/herz.png";
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
-    return !!data;
+    return !isNaN(data);
   }
 
   return (

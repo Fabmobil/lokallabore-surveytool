@@ -6,8 +6,11 @@ import RobiFlameGif from "../../assets/robi-gifs/Robi_flamme-min.gif";
 import SURVEY_LOGIN_DRITTERBESUCH from "../../constants/survey-login-dritterbesuch";
 
 function isThirdVisit(globalData) {
+  if (process.env.REACT_APP_ENABLETHIRDVISIT) {
+    return true;
+  }
   const numberOfVisits = globalData.numberOfVisits;
-  if (!numberOfVisits) return false
+  if (!numberOfVisits) return false;
   return (numberOfVisits + 1) % 3 === 0; //current one = +1 because not yet submitted
 }
 
@@ -30,7 +33,15 @@ function Screen({ onSubmit, data, nextRoute, onFinalSubmit, globalData }) {
 
       <WeiterButton
         text={!isThird ? "Und fertig!" : ""}
-        onClick={isThird ? () => { } : () => { onFinalSubmit().then(() => { navigate(nextRoute) }) }}
+        onClick={
+          isThird
+            ? () => {}
+            : () => {
+                onFinalSubmit().then(() => {
+                  navigate(nextRoute);
+                });
+              }
+        }
         navigateTo={isThird ? firstRouteThirdVisit : undefined}
       />
     </>
