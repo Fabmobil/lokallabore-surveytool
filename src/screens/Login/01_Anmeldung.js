@@ -3,6 +3,11 @@ import VerticalGrid from "../../components/VerticalGrid";
 import TextInput from "../../components/TextInput";
 import { useNavigate } from "react-router";
 
+function prefixWithZero(numberString) {
+  if (!numberString) return "";
+  return numberString.length > 1 ? numberString : `0${numberString}`;
+}
+
 function Screen({
   onSubmit,
   data,
@@ -44,6 +49,7 @@ function Screen({
             maxLength={2}
             value={data && data.day ? data.day : ""}
             onChange={(val) => onSubmit({ ...data, day: val })}
+            onBlur={() => onSubmit({ ...data, day: prefixWithZero(data.day) })}
           />
           <TextInput
             placeholder="MM"
@@ -51,6 +57,9 @@ function Screen({
             maxLength={2}
             value={data && data.month ? data.month : ""}
             onChange={(val) => onSubmit({ ...data, month: val })}
+            onBlur={() =>
+              onSubmit({ ...data, month: prefixWithZero(data.month) })
+            }
           />
           <TextInput
             placeholder="JJJJ"

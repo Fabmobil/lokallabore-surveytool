@@ -2,6 +2,11 @@ import WeiterButton from "../../components/WeiterButton";
 import VerticalGrid from "../../components/VerticalGrid";
 import TextInput from "../../components/TextInput";
 
+function prefixWithZero(numberString) {
+  if (!numberString) return "";
+  return numberString.length > 1 ? numberString : `0${numberString}`;
+}
+
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
     if (!data) return false;
@@ -12,6 +17,7 @@ function Screen({ onSubmit, data, nextRoute }) {
     if (!data.year.match(/^[0-9]{4}$/)) return false;
     return true;
   }
+  console.log("data", data);
   return (
     <>
       <p>Wann hast du Geburtstag? Damit meldest du dich künftig an.</p>
@@ -25,6 +31,7 @@ function Screen({ onSubmit, data, nextRoute }) {
             maxLength={2}
             value={data && data.day ? data.day : ""}
             onChange={(val) => onSubmit({ ...data, day: val })}
+            onBlur={() => onSubmit({ ...data, day: prefixWithZero(data.day) })}
           />
           <TextInput
             placeholder="MM"
@@ -33,6 +40,9 @@ function Screen({ onSubmit, data, nextRoute }) {
             maxLength={2}
             value={data && data.month ? data.month : ""}
             onChange={(val) => onSubmit({ ...data, month: val })}
+            onBlur={() =>
+              onSubmit({ ...data, month: prefixWithZero(data.month) })
+            }
           />
           <TextInput
             placeholder="JJJJ"
