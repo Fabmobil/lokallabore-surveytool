@@ -48,6 +48,27 @@ function convertUTCDatesToSaxonyTime(arr) {
   });
 }
 
+//////////////////////////////////
+function cleanAnswerSetGuest(arr) {
+  arr.forEach((el) => {
+    if (el.besuch) {
+      const dataBesuch = `${[el.besuch.predefinedValue, el.besuch.freeValue]
+        .filter(Boolean)
+        .join(",")}`;
+      el.besuch = dataBesuch;
+    }
+    if (el.geschlecht) {
+      const dataGeschlecht = `${[
+        (el.geschlecht.predefinedValues || []).join(","),
+        el.geschlecht.freeValue,
+      ]
+        .filter(Boolean)
+        .join(",")}`;
+      el.geschlecht = dataGeschlecht;
+    }
+  });
+}
+
 function cleanAnswerSetRegistrierung(arr) {
   //besuch, geburtstag, geschlecht
   arr.forEach((el) => {
@@ -70,7 +91,6 @@ function cleanAnswerSetRegistrierung(arr) {
 }
 
 function cleanAnswerSetLogin(arr) {}
-function cleanAnswerSetGuest(arr) {}
 
 function doData(data) {
   //Time test
