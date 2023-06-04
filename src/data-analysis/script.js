@@ -48,6 +48,30 @@ function convertUTCDatesToSaxonyTime(arr) {
   });
 }
 
+function cleanAnswerSetRegistrierung(arr) {
+  //besuch, geburtstag, geschlecht
+  arr.forEach((el) => {
+    if (el.besuch) {
+      const dataBesuch = `${[el.besuch.predefinedValue, el.besuch.freeValue]
+        .filter(Boolean)
+        .join(",")}`;
+      el.besuch = dataBesuch;
+    }
+    if (el.geschlecht) {
+      const dataGeschlecht = `${[
+        el.geschlecht.predefinedValues.join(","),
+        el.geschlecht.freeValue,
+      ]
+        .filter(Boolean)
+        .join(",")}`;
+      el.geschlecht = dataGeschlecht;
+    }
+  });
+}
+
+function cleanAnswerSetLogin(arr) {}
+function cleanAnswerSetGuest(arr) {}
+
 function doData(data) {
   //Time test
   const utcTime = "2023-01-06T22:39:51.720Z";
@@ -61,6 +85,9 @@ function doData(data) {
   const answersRegistrierung = Object.values(data["answersRegistrierung"]);
   const answersLogin = Object.values(data["answersLogin"]);
   const answersGuest = Object.values(data["answersGuest"]);
+  cleanAnswerSetRegistrierung(answersRegistrierung);
+  cleanAnswerSetLogin(answersLogin);
+  cleanAnswerSetGuest(answersGuest);
   sortByDate(answersRegistrierung);
   sortByDate(answersLogin);
   sortByDate(answersGuest);
