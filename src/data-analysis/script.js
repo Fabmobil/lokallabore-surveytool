@@ -48,7 +48,6 @@ function convertUTCDatesToSaxonyTime(arr) {
   });
 }
 
-//////////////////////////////////
 function cleanAnswerSetGuest(arr) {
   arr.forEach((el) => {
     if (el.besuch) {
@@ -80,7 +79,7 @@ function cleanAnswerSetRegistrierung(arr) {
     }
     if (el.geschlecht) {
       const dataGeschlecht = `${[
-        el.geschlecht.predefinedValues.join(","),
+        (el.geschlecht.predefinedValues || []).join(","),
         el.geschlecht.freeValue,
       ]
         .filter(Boolean)
@@ -90,7 +89,28 @@ function cleanAnswerSetRegistrierung(arr) {
   });
 }
 
-function cleanAnswerSetLogin(arr) {}
+function cleanAnswerSetLogin(arr) {
+  arr.forEach((el) => {
+    if (el.technologien) {
+      const dataTechnologien = `${[
+        el.technologien.predefinedValue,
+        el.technologien.freeValue,
+      ]
+        .filter(Boolean)
+        .join(",")}`;
+      el.technologien = dataTechnologien;
+    }
+    if (el.verbesserung) {
+      const dataVerbesserung = `${[
+        (el.verbesserung.predefinedValues || []).join(","),
+        el.verbesserung.freeValue,
+      ]
+        .filter(Boolean)
+        .join(",")}`;
+      el.verbesserung = dataVerbesserung;
+    }
+  });
+}
 
 function doData(data) {
   //Time test
