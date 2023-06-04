@@ -1,14 +1,9 @@
 import SingleChoice from "../../components/SingleChoiceTool";
 import VerticalGrid from "../../components/VerticalGrid";
 import { useNavigate } from "react-router-dom";
+import LOKALLABOR_LOCATIONS from "../../constants/lokallabor-locations";
 
-const ANSWER_OPTIONS = [
-  "Annaberg-Buchholz",
-  "Löbau",
-  "Weißwasser",
-  "Plauen",
-  "Altenburg",
-];
+const ANSWER_OPTIONS = LOKALLABOR_LOCATIONS;
 
 function Screen({ onSubmit, data, nextRoute }) {
   const navigate = useNavigate();
