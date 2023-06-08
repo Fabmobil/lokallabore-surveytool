@@ -20,11 +20,11 @@ function handleDataset(dataset, title) {
   downloadCsv(csv, `lokallabore-data-${title}.csv`);
 }
 
-function handleFileUpload(e, setInfo, setError) {
+function handleFileUpload(e, setLogs, setInfo, setError) {
   try {
     const content = e.target.result;
     const data = JSON.parse(content);
-    const { dataRegistrierung, dataLogin, dataGuest } = doData(data);
+    const { dataRegistrierung, dataLogin, dataGuest } = doData(data, setLogs);
     handleDataset(dataRegistrierung, "registrierung");
     handleDataset(dataLogin, "login");
     handleDataset(dataGuest, "guest");
@@ -41,12 +41,13 @@ function handleFileUpload(e, setInfo, setError) {
 function Screen() {
   const [error, setError] = useState(false);
   const [info, setInfo] = useState("");
+  const [logs, setLogs] = useState([]);
 
   const onFileChange = (event) => {
     setInfo("");
     const file = event.target.files[0];
     fileReader.onload = function (e) {
-      handleFileUpload(e, setInfo, setError);
+      handleFileUpload(e, setLogs, setInfo, setError);
     };
     fileReader.readAsText(file, "UTF-8");
   };
@@ -62,6 +63,11 @@ function Screen() {
             information.
           </div>
         )}
+        <div style={{ fontSize: 14, backgroundColor: "white", padding: 10 }}>
+          {logs.map((log) => (
+            <p>{log}</p>
+          ))}
+        </div>
         {info && (
           <div className="border p-3 bg-blue-100">
             <p>{info}</p>

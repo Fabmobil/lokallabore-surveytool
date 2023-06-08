@@ -1,12 +1,17 @@
+const DELIMITER = ",";
+
+//TODO escape quotes?
 function convertToStringable(el) {
   //convert data objects into something useful for the reader
+  let str = "";
   if (Array.isArray(el)) {
-    return `${el}`; //built-in is fine for our case
+    str = `${el}`; //built-in is fine for our case
+  } else if (typeof el === "object") {
+    str = JSON.stringify(el);
+  } else {
+    str = String(el);
   }
-  //if is object
-  if (typeof el === "object") {
-    return JSON.stringify(el);
-  } else return el;
+  return str.replaceAll(DELIMITER, ";").replaceAll("#", "{HASH}"); //a hash (#) in the data cuts off the csv file triggers the download 🙈
 }
 
 export function isPromise(p) {
@@ -16,7 +21,7 @@ export function isPromise(p) {
   return false;
 }
 
-export function arrToCsv(arr, columns, delimiter = ",") {
+export function arrToCsv(arr, columns, delimiter = DELIMITER) {
   return [
     columns.join(delimiter),
     ...arr.map((obj) =>
@@ -30,9 +35,6 @@ export function arrToCsv(arr, columns, delimiter = ",") {
     ),
   ].join("\n");
 }
-
-//TODO: escape delimiter?
-//TODO escape quotes?
 
 export function collectAllKeyNames(array) {
   const keyNames = array.map((el) => Object.keys(el)).flat();
