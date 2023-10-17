@@ -25,7 +25,7 @@ function Screen({ onSubmit, data, nextRoute }) {
         <VerticalGrid>
           {/*Tag, Monat, Jahr */}
           <TextInput
-            placeholder="TT"
+            placeholder="31"
             pattern="[0-9]{2}"
             minLength={2}
             maxLength={2}
@@ -34,7 +34,7 @@ function Screen({ onSubmit, data, nextRoute }) {
             onBlur={() => onSubmit({ ...data, day: prefixWithZero(data.day) })}
           />
           <TextInput
-            placeholder="MM"
+            placeholder="01"
             pattern="[0-9]{2}"
             minLength={2}
             maxLength={2}
@@ -45,7 +45,7 @@ function Screen({ onSubmit, data, nextRoute }) {
             }
           />
           <TextInput
-            placeholder="JJJJ"
+            placeholder="2001"
             pattern="[0-9]{4}"
             minLength={4}
             maxLength={4}

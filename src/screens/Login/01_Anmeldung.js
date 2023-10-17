@@ -33,18 +33,21 @@ function Screen({
   }
   return (
     <>
-      <p>Melde dich mit deinem Spitznamen und Geburtstag an :)</p>
+      <p>
+        Willkommen zurück! <br />
+        Logge dich mit deinem Vornamen und Geburtsdatum (in Zahlen) ein!
+      </p>
       <div className="vertical-center">
         <VerticalGrid>
           <TextInput
-            placeholder="Nickname"
+            placeholder="Vorname"
             maxLength={15}
             value={data && data.nickname ? data.nickname : ""}
             onChange={(val) => onSubmit({ ...data, nickname: val })}
           />
           {/*Tag, Monat, Jahr */}
           <TextInput
-            placeholder="TT"
+            placeholder="31"
             minLength={2}
             maxLength={2}
             value={data && data.day ? data.day : ""}
@@ -52,7 +55,7 @@ function Screen({
             onBlur={() => onSubmit({ ...data, day: prefixWithZero(data.day) })}
           />
           <TextInput
-            placeholder="MM"
+            placeholder="01"
             minLength={2}
             maxLength={2}
             value={data && data.month ? data.month : ""}
@@ -62,7 +65,7 @@ function Screen({
             }
           />
           <TextInput
-            placeholder="JJJJ"
+            placeholder="2001"
             minLength={4}
             maxLength={4}
             value={data && data.year ? data.year : ""}
