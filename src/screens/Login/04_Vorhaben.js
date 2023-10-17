@@ -3,12 +3,20 @@ import WeiterButton from "../../components/WeiterButton";
 import TextInput from "../../components/TextInput";
 import RobiGif from "../../components/RobiGif";
 import RobiLongarmTouchGif from "../../assets/robi-gifs/Robi_longarmtouch-min.gif";
+import MultipleChoiceTool from "../../components/MultipleChoiceTool";
+import VerticalGrid from "../../components/VerticalGrid";
 
 const robiWidth = 332;
 
 function Screen({ onSubmit, data, nextRoute }) {
   function hasUserAnswered() {
-    return !!data;
+    if (data && data.predefinedValues && data.predefinedValues.length > 0) {
+      return true;
+    }
+    if (data && data.freeValue && data.freeValue.length > 0) {
+      return true;
+    }
+    return false;
   }
 
   const containerRef = useRef(null);
@@ -40,11 +48,29 @@ function Screen({ onSubmit, data, nextRoute }) {
     };
   }, [data]);
 
+  function changePredefinedValues(data, vals) {
+    return { ...data, predefinedValues: vals };
+  }
+  function changeFreeValue(data, val) {
+    return { ...data, freeValue: val };
+  }
+
   return (
     <>
       <p>Was möchtest du heute gerne machen?</p>
       <div ref={containerRef} className="vertical-center">
-        <TextInput value={data} onChange={(val) => onSubmit(val)} />
+        <VerticalGrid>
+          <MultipleChoiceTool
+            options={["Freies Arbeiten"]}
+            onChange={(vals) => onSubmit(changePredefinedValues(data, vals))}
+            data={(data && data.predefinedValues) || null}
+          />
+          <TextInput
+            placeholder="Ich möchte..."
+            value={(data && data.freeValue) || ""}
+            onChange={(val) => onSubmit(changeFreeValue(data, val))}
+          />
+        </VerticalGrid>
       </div>
       <WeiterButton disabled={!hasUserAnswered()} navigateTo={nextRoute} />
       <RobiGif

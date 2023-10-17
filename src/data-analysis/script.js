@@ -118,6 +118,13 @@ function cleanAnswerSetLogin(arr) {
         .join(",")}`;
       el.verbesserung = dataVerbesserung;
     }
+    if (el.vorhaben) {
+      if (typeof el.vorhaben === "object") {
+        //smear el.vorhaben.freeValue and el.vorhaben.predefinedValue into one string, order doesnt matter
+        const dataVorhaben = Object.values(el.vorhaben).flat();
+        el.vorhaben = dataVorhaben;
+      }
+    }
   });
 }
 
