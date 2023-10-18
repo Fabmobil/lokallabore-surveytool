@@ -16,7 +16,10 @@ Es gibt 3 Umfrage-Sorten innerhalb der App, die für verschiedene Menschen und S
 Hier gibt es eine kurze und eine lange Variante.
 Die lange (extended) Variante wird aktiviert bei jedem 3. Besuch einer Person. Wenn sich eine Person jedoch als Betreuer*in ausweist, dann wird die lange Variante nie aktiviert.
 
-## Technisches (weiter auf Englisch)
+## Benutzer*innen Login/Logout
+Diese App benutzt ein vereinfachtes Benutzer*innen management. Der Login besteht aus dem Namen und dem Geburtsdatum einer Person. Es werden keine Passwörter benutzt.
+
+## Technisches über React (weiter auf Englisch)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Getting Started with Create React App
