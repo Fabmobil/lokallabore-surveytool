@@ -53,7 +53,7 @@ function convertUTCDatesToSaxonyTime(arr) {
   arr.forEach((el) => {
     el.date = DateTime.fromISO(el.date, {
       zone: "Europe/Paris",
-    });
+    }).toFormat("yyyy/MM/dd");
   });
 }
 
