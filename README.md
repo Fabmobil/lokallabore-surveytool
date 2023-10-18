@@ -1,7 +1,12 @@
-# Ein Umfragetool für die Lokallabore
+# Ein Umfragetool für die Lokallabore!
+
+<img width=200 src="https://github.com/Evaluationstool-Fabmobil-Lokallabore/lokallabore-surveytool/assets/147499884/938e4127-9269-4bd1-b8f5-417fb2d0cd97" />
+<img width=200 src="https://github.com/Evaluationstool-Fabmobil-Lokallabore/lokallabore-surveytool/assets/147499884/a9740fdb-167d-4390-b90b-11b79e82b697" />
+<img width=200 src="https://github.com/Evaluationstool-Fabmobil-Lokallabore/lokallabore-surveytool/assets/147499884/607d1b87-0762-43f4-ae06-4a0e7af9ae28" />
+
+<br/><br/>
 
 Dies ist eine Webapp, die in allen modernen Browsern läuft.
-
 Die App ist mit dem Javascript Framework [React](https://react.dev/) entwickelt worden (mehr siehe unten im README), und benutzt [Firebase](https://firebase.google.com/) als Datenbank.
 
 Deployed und gehostet wird die App auf [Netlify](https://www.netlify.com/).
