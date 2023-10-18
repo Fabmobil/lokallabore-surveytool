@@ -6,15 +6,13 @@ Die App ist mit dem Javascript Framework React entwickelt worden und benutzt Fir
 
 Deployed und gehostet wird die App auf Netlify.
 
-## Business-Logik
+## Umfrage Ablauf und Logik
 Es gibt 3 Umfrage-Sorten innerhalb der App, die für verschiedene Menschen und Situationen gedacht sind:
 - "Registrierung"
 - "Login"
 - "Ich bin zu Gast"
 
-### Besonderheit Ablauf bei "Login"
-Hier gibt es eine kurze und eine lange Variante.
-Die lange (extended) Variante wird aktiviert bei jedem 3. Besuch einer Person. Wenn sich eine Person jedoch als Betreuer*in ausweist, dann wird die lange Variante nie aktiviert.
+Besonderheit Ablauf bei "Login": Hier gibt es eine kurze und eine lange Variante. Die lange (extended) Variante wird aktiviert bei jedem 3. Besuch einer Person. Wenn sich eine Person jedoch als Betreuer*in ausweist, dann wird die lange Variante nie aktiviert.
 
 ## Benutzer*innen Login/Logout
 Diese App benutzt ein vereinfachtes Benutzer*innen management. Der Login besteht aus dem Namen und dem Geburtsdatum einer Person. Es werden keine Passwörter benutzt.
