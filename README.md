@@ -2,9 +2,9 @@
 
 Dies ist eine Webapp, die in allen modernen Browsern läuft.
 
-Die App ist mit dem Javascript Framework React entwickelt worden und benutzt Firebase als Backend und Datenbank.
+Die App ist mit dem Javascript Framework [React](https://react.dev/) entwickelt worden (mehr siehe unten im README), und benutzt [Firebase](https://firebase.google.com/) als Datenbank.
 
-Deployed und gehostet wird die App auf Netlify.
+Deployed und gehostet wird die App auf [Netlify](https://www.netlify.com/).
 
 ## Umfrage Ablauf und Logik
 Es gibt 3 Umfrage-Sorten innerhalb der App, die für verschiedene Menschen und Situationen gedacht sind:
