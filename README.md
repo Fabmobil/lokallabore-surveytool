@@ -14,8 +14,9 @@ Es gibt 3 Umfrage-Sorten innerhalb der App, die für verschiedene Menschen und S
 
 Besonderheit Ablauf bei "Login": Hier gibt es eine kurze und eine lange Variante. Die lange (extended) Variante wird aktiviert bei jedem 3. Besuch einer Person. Wenn sich eine Person jedoch als Betreuer*in ausweist, dann wird die lange Variante nie aktiviert.
 
-## Benutzer*innen Login/Logout
-Diese App benutzt ein vereinfachtes Benutzer*innen management. Der Login besteht aus dem Namen und dem Geburtsdatum einer Person. Es werden keine Passwörter benutzt.
+## User Identifizierung aka Benutzer*innen Login
+Für die Datenauswertung ist es wichtig, mehrere Submissions, die von ein und derselben Person stammen, zuordnen zu können.
+Dafür benutzt die App eine vereinfachte Benutzer*innen Identifizierung. Der "Login" besteht aus dem Namen und dem Geburtsdatum einer Person. Es werden keine Passwörter benutzt.
 
 ## Technisches über React (weiter auf Englisch)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
