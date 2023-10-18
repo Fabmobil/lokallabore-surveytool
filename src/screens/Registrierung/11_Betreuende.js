@@ -2,7 +2,7 @@ import SingleChoice from "../../components/SingleChoiceTool";
 import { useNavigate } from "react-router-dom";
 import VerticalGrid from "../../components/VerticalGrid";
 
-const ANSWER_OPTIONS = ["1", "2-3", "mehr als 3"];
+const ANSWER_OPTIONS = ["1", "2-3", "mehr als 3", "Ich bin Betreuer*in"];
 
 function Screen({ onSubmit, data, nextRoute }) {
   const navigate = useNavigate();

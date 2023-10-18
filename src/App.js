@@ -6,7 +6,7 @@ import StartScreen from "./screens/0_Start";
 import DataExportScreen from "./screens/Data-Export";
 import SURVEY_REGISTRIERUNG from "./constants/survey-registrierung";
 import SURVEY_LOGIN from "./constants/survey-login";
-import SURVEY_LOGIN_DRITTERBESUCH from "./constants/survey-login-dritterbesuch";
+import SURVEY_LOGIN_EXTENDED from "./constants/survey-login-extended";
 import SURVEY_GUEST from "./constants/survey-guest";
 import FirebaseClient from "./firebase/client";
 import AlertLayer from "./AlertLayer";
@@ -21,6 +21,10 @@ class App extends React.Component {
       surveyAnswersGuest: {},
       error: null,
     };
+  }
+
+  setStateFlag(key, val) {
+    this.setState({ ...this.state, [key]: val });
   }
 
   getValueOrNone(surveyState, val1, val2) {
@@ -227,6 +231,9 @@ class App extends React.Component {
                         nickname:
                           this.state.surveyAnswersRegistrierung["nickname"],
                       }}
+                      setStateFlag={(key, val) => {
+                        this.setStateFlag(key, val);
+                      }}
                       onNicknameSubmit={() => this.createNewUser()}
                       onFinalSubmit={() => this.onFinalSubmitRegistrierung()}
                       onLogout={() => this.resetSurveyData()}
@@ -256,6 +263,7 @@ class App extends React.Component {
                           this.state.surveyAnswersLogin[
                             "calculatedNumberOfVisits"
                           ],
+                        isBetreuerin: this.state["IS_BETREUERIN"],
                       }}
                       onLogin={(userId) => {
                         this.logAnswerLogin("userID", userId);
@@ -264,21 +272,21 @@ class App extends React.Component {
                       onFinalSubmit={() => this.onFinalSubmitLogin()}
                       firebaseClient={this.firebaseClient}
                       onError={(errorCode) => this.reportError(errorCode)}
+                      setStateFlag={(key, val) => {
+                        this.setStateFlag(key, val);
+                      }}
                     ></item.screenComponent>
                   }
                 />
               ))}
 
-              {SURVEY_LOGIN_DRITTERBESUCH.surveyItems.map((item, i) => (
+              {SURVEY_LOGIN_EXTENDED.surveyItems.map((item, i) => (
                 <Route
                   key={item.questionId}
-                  path={`${SURVEY_LOGIN_DRITTERBESUCH.baseUrl}/${item.questionId}`}
+                  path={`${SURVEY_LOGIN_EXTENDED.baseUrl}/${item.questionId}`}
                   element={
                     <item.screenComponent
-                      nextRoute={this.getNextRoute(
-                        SURVEY_LOGIN_DRITTERBESUCH,
-                        i
-                      )}
+                      nextRoute={this.getNextRoute(SURVEY_LOGIN_EXTENDED, i)}
                       onSubmit={(data) => {
                         this.logAnswerLogin(item.questionId, data);
                       }}
