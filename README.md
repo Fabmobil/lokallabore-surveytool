@@ -1,5 +1,14 @@
 # Ein Umfragetool für die Lokallabore
 
+## Business-Logik
+Es gibt 3 Umfrage-Sorten innerhalb der App, die für verschiedene Menschen und Situationen gedacht sind:
+- "Registrierung"
+- "Login"
+- "Ich bin zu Gast"
+
+### Besonderheit Ablauf bei "Login"
+Hier gibt es eine kurze und eine lange Variante.
+Die lange (extended) Variante wird aktiviert bei jedem 3. Besuch einer Person. Wenn sich eine Person jedoch als Betreuer*in ausweist, dann wird die lange Variante nie aktiviert.
 
 ## Technisches (weiter auf Englisch)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
