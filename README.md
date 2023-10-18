@@ -9,7 +9,7 @@
 Dies ist eine Webapp, die in allen modernen Browsern läuft.
 Die App ist mit dem Javascript Framework [React](https://react.dev/) entwickelt worden (mehr siehe unten im README), und benutzt [Firebase](https://firebase.google.com/) als Datenbank.
 
-Deployed und gehostet wird die App auf [Netlify](https://www.netlify.com/).
+Deployed und gehostet wird die App auf [Netlify](https://www.netlify.com/). [![Netlify Status](https://api.netlify.com/api/v1/badges/aabd7458-40a4-4c54-bdac-f8aa52bef505/deploy-status)](https://app.netlify.com/sites/lokallabore-survey/deploys)
 
 ## Umfrage Ablauf und Logik
 Es gibt 3 Umfrage-Sorten innerhalb der App, die für verschiedene Menschen und Situationen gedacht sind:
