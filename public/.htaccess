@@ -1,0 +1,7 @@
+RewriteEngine On
+
+# Defense in depth: the SQLite db file lives outside the docroot,
+# but deny it by extension too in case that ever changes.
+<FilesMatch "\.(sqlite|sqlite3|db)$">
+    Require all denied
+</FilesMatch>

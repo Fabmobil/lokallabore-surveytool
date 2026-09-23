@@ -1,0 +1,10 @@
+<Files ".htpasswd">
+    Require all denied
+</Files>
+
+<Files "export-csv.php">
+    AuthType Basic
+    AuthName "Lokallabore Survey Export"
+    AuthUserFile /var/www/virtual/fabmobil/html/umfrage.lokallabore.de/public/api/.htpasswd
+    Require valid-user
+</Files>

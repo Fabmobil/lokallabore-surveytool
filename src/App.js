@@ -3,18 +3,17 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./Layout";
 import Layout2 from "./Layout2";
 import StartScreen from "./screens/0_Start";
-import DataExportScreen from "./screens/Data-Export";
 import SURVEY_REGISTRIERUNG from "./constants/survey-registrierung";
 import SURVEY_LOGIN from "./constants/survey-login";
 import SURVEY_LOGIN_EXTENDED from "./constants/survey-login-extended";
 import SURVEY_GUEST from "./constants/survey-guest";
-import FirebaseClient from "./firebase/client";
+import ApiClient from "./api/client";
 import AlertLayer from "./AlertLayer";
 
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.firebaseClient = new FirebaseClient();
+    this.apiClient = new ApiClient();
     this.state = {
       surveyAnswersRegistrierung: {},
       surveyAnswersLogin: {},
@@ -94,7 +93,7 @@ class App extends React.Component {
       date: new Date().toISOString(),
     };
     console.log("submitted data", data);
-    this.firebaseClient
+    this.apiClient
       .postAnswersRegistrierung(data)
       .catch((err) => alert("Etwas ist schief gelaufen.."));
   }
@@ -105,7 +104,7 @@ class App extends React.Component {
       date: new Date().toISOString(),
     };
     console.log("submitted data", data);
-    return this.firebaseClient
+    return this.apiClient
       .postAnswersLogin(data)
       .catch((err) => alert("Etwas ist schief gelaufen.."));
   }
@@ -118,27 +117,23 @@ class App extends React.Component {
     this.setState({ ...this.state, error: null });
   }
 
-  createNewUser() {
+  async createNewUser() {
     const { nickname, geburtstag } = this.state.surveyAnswersRegistrierung;
-    const userID = this.firebaseClient.createUserID(nickname, geburtstag);
+    const userID = this.apiClient.createUserID(nickname, geburtstag);
 
-    return this.firebaseClient.userDoesExist(userID).then((doesExist) => {
-      if (doesExist) {
+    try {
+      await this.apiClient.registerUser(userID);
+    } catch (err) {
+      if (err.code === "USER_EXISTS") {
         this.reportError("USER_EXISTS");
-        throw Error();
-      } else {
-        this.firebaseClient
-          .postUser(userID)
-          .then(() => {
-            this.logAnswerRegistrierung("userID", userID);
-          })
-          .catch(() => {
-            if (window.confirm("Oh no! Ein Fehler ist aufgetreten.")) {
-              window.location = "/";
-            }
-          });
+        throw err;
       }
-    });
+      if (window.confirm("Oh no! Ein Fehler ist aufgetreten.")) {
+        window.location = "/";
+      }
+      throw err;
+    }
+    this.logAnswerRegistrierung("userID", userID);
   }
 
   submitAllAnswersGuest() {
@@ -147,7 +142,7 @@ class App extends React.Component {
       date: new Date().toISOString(),
     };
     console.log("submitted data", data);
-    this.firebaseClient
+    this.apiClient
       .postAnswersGuest(data)
       .catch((err) => alert("Etwas ist schief gelaufen.."));
   }
@@ -162,15 +157,16 @@ class App extends React.Component {
   }
 
   onFinalSubmitLogin() {
+    const userID = this.state.surveyAnswersLogin.userID;
     return this.submitAllAnswersLogin()
       .then(() => {
         this.resetSurveyData();
         console.log("reset!");
       })
       .then(() => {
-        this.firebaseClient.incrementNumberOfVisits(
-          this.state.surveyAnswersLogin.userID
-        );
+        this.apiClient
+          .incrementNumberOfVisits(userID)
+          .catch((err) => console.error(err));
       });
   }
 
@@ -179,12 +175,6 @@ class App extends React.Component {
       return "/" + schema.baseUrl + "/" + schema.surveyItems[i + 1].questionId;
     }
     return "/";
-  }
-
-  saveNumberOfVisits(userId) {
-    this.firebaseClient.getNumberOfVisits(userId).then((number) => {
-      this.logAnswerLogin("calculatedNumberOfVisits", number);
-    });
   }
 
   render() {
@@ -265,12 +255,15 @@ class App extends React.Component {
                           ],
                         isBetreuerin: this.state["IS_BETREUERIN"],
                       }}
-                      onLogin={(userId) => {
+                      onLogin={(userId, numberOfVisits) => {
                         this.logAnswerLogin("userID", userId);
-                        this.saveNumberOfVisits(userId);
+                        this.logAnswerLogin(
+                          "calculatedNumberOfVisits",
+                          numberOfVisits
+                        );
                       }}
                       onFinalSubmit={() => this.onFinalSubmitLogin()}
-                      firebaseClient={this.firebaseClient}
+                      apiClient={this.apiClient}
                       onError={(errorCode) => this.reportError(errorCode)}
                       setStateFlag={(key, val) => {
                         this.setStateFlag(key, val);
@@ -321,7 +314,6 @@ class App extends React.Component {
                 />
               ))}
             </Route>
-            <Route path="/data-export" element={<DataExportScreen />} />
           </Routes>
         </BrowserRouter>
       </>

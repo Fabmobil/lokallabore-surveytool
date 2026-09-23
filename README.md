@@ -7,9 +7,9 @@
 <br/><br/>
 
 Dies ist eine Webapp, die in allen modernen Browsern läuft.
-Die App ist mit dem Javascript Framework [React](https://react.dev/) entwickelt worden (mehr siehe unten im README), und benutzt [Firebase](https://firebase.google.com/) als Datenbank.
+Die App ist mit dem Javascript Framework [React](https://react.dev/) entwickelt worden (mehr siehe unten im README). Als Backend dient eine kleine PHP-API (`server/api/`), die die Umfrageantworten in einer SQLite-Datenbank auf dem Server speichert.
 
-Deployed und gehostet wird die App auf [Netlify](https://www.netlify.com/). [![Netlify Status](https://api.netlify.com/api/v1/badges/aabd7458-40a4-4c54-bdac-f8aa52bef505/deploy-status)](https://app.netlify.com/sites/lokallabore-survey/deploys)
+Deployed und gehostet wird die App auf einem eigenen Server (umfrage.lokallabore.de). Bei jedem Push auf `main` baut eine GitHub Action (`.github/workflows/deploy.yml`) die App und überträgt sie per rsync über SSH auf den Server.
 
 ## Umfrage Ablauf und Logik
 Es gibt 3 Umfrage-Sorten innerhalb der App, die für verschiedene Menschen und Situationen gedacht sind:
@@ -39,6 +39,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
+
+#### `npm run api`
+
+Starts a local PHP server for the API at [http://localhost:8080](http://localhost:8080)
 
 #### `npm test`
 

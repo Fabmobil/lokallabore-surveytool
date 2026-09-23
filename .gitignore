@@ -11,6 +11,9 @@
 # production
 /build
 
+# local PHP/SQLite dev backend
+/.dev-data
+
 # misc
 .DS_Store
 .env.local

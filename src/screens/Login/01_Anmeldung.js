@@ -12,7 +12,7 @@ function Screen({
   onSubmit,
   data,
   nextRoute,
-  firebaseClient,
+  apiClient,
   onLogin,
   onError = () => {},
 }) {
@@ -75,19 +75,19 @@ function Screen({
             style={{ position: "static" }}
             disabled={!hasUserAnswered()}
             onClick={() => {
-              const userID = firebaseClient.createUserID(data.nickname, {
+              const userID = apiClient.createUserID(data.nickname, {
                 day: data.day,
                 month: data.month,
                 year: data.year,
               });
-              return firebaseClient
+              return apiClient
                 .userDoesExist(userID)
-                .then((doesExist) => {
-                  if (!doesExist) {
+                .then(({ exists, numberOfVisits }) => {
+                  if (!exists) {
                     onError("USER_EXISTS_NOT");
                     throw Error();
                   }
-                  onLogin(userID);
+                  onLogin(userID, numberOfVisits);
                 })
                 .then(() => {
                   navigate(nextRoute);
