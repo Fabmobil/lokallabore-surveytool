@@ -1,7 +1,17 @@
 RewriteEngine On
+RewriteBase /
 
 # Defense in depth: the SQLite db file lives outside the docroot,
 # but deny it by extension too in case that ever changes.
 <FilesMatch "\.(sqlite|sqlite3|db)$">
     Require all denied
 </FilesMatch>
+
+# SPA fallback: react-router uses client-side routing (BrowserRouter), so a
+# direct load of a deep route has no matching file on disk and would
+# otherwise 404. Serve index.html for anything that isn't a real file or
+# directory (this also leaves /api/*.php alone, since those exist as actual
+# files) and let react-router take over from there.
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.html [L]
